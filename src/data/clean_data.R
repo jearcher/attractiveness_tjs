@@ -13,8 +13,9 @@ data <- data[-1,]
 # Subset only the columns we need (to save space)
 cols2keep <- colnames(data)[c(9, 19:364)]
 data <- subset(data, select =  cols2keep)
-# Write to processed
 
+
+# Write to processed\
 fwrite(data, file = "../../data/processed/processed_data.csv")
 
 
