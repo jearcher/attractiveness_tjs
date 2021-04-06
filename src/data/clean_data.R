@@ -58,17 +58,20 @@ swipe_only_treat <- subset(swipe_only, select = swipe_only_treatment_cols)
 # - fix any situation manually where there was only 1 distinct treatment choice
 # - append the missing choice from control as the 'losing' choice in control 
 
-all_photo_choices <- swipe_only_treat[, unique(unlist(lapply(.SD, unique)))]
-# remove "" unique value
-#all_photo_choices <- all_photo_choices[-1,]
-View(all_photo_choices)
-
-length(all_photo_choices)
-## ??TODO?? 
 # - Double check list on all_phot_choices to manually add when only 1 photo was selected in treatment
 # - remove first row
 
+treat_photo_choices <- fread("../../data/interim/treat_photo_choices_incomplete.csv")
 
+ctrl_photo_choices <- copy(treat_photo_choices)
+ctrl_photo_choices[, "choice_1" := gsub(pattern = 'nike', replacement = 'none', x = data[, "choice_1"])]
+ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x = data[, "choice_1"])]
+
+ctrl_photo_choices[, choice_2 := gsub(pattern = 'nike', replacement = 'none', x = data[, choice_2])]
+ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x = data[, choice_2])]
+
+colnames(ctrl_photo_choices)
+View(ctrl_photo_choices)
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
