@@ -26,10 +26,13 @@ data <- subset(data, select =  cols2keep)
 
 data[ , ]
 
-# Write to processed\
+# Write to processed
 fwrite(data, file = "../../data/processed/processed_data.csv")
 
 
+##########################
+# Create new data tables #
+##########################
 
 # get all colnames that contain 'swipe'
 swipe_cols <- colnames(data)[grepl(pattern = "swipe", x = colnames(data))]
@@ -50,6 +53,20 @@ swipe_only_treatment_cols <- colnames(swipe_only)[grepl(pattern = "_t_", x = col
 swipe_only_ctrl <- subset(swipe_only, select = swipe_only_control_cols)
 swipe_only_treat <- subset(swipe_only, select = swipe_only_treatment_cols)
 
+## ??TODO?? 
+# - print all distinct values for each treatment choice (swipe only)
+# - fix any situation manually where there was only 1 distinct treatment choice
+# - append the missing choice from control as the 'losing' choice in control 
+
+all_photo_choices <- swipe_only_treat[, unique(unlist(lapply(.SD, unique)))]
+# remove "" unique value
+#all_photo_choices <- all_photo_choices[-1,]
+View(all_photo_choices)
+
+length(all_photo_choices)
+## ??TODO?? 
+# - Double check list on all_phot_choices to manually add when only 1 photo was selected in treatment
+# - remove first row
 
 
 #############################################################################
@@ -79,8 +96,6 @@ Hmisc::latex(total_summary,
              file = "")
 sink()
 
-##########################
-# Create new data tables #
-##########################
+
 
 
