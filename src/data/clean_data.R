@@ -64,11 +64,11 @@ swipe_only_treat <- subset(swipe_only, select = swipe_only_treatment_cols)
 treat_photo_choices <- fread("../../data/interim/treat_photo_choices_incomplete.csv")
 
 ctrl_photo_choices <- copy(treat_photo_choices)
-ctrl_photo_choices[, "choice_1" := gsub(pattern = 'nike', replacement = 'none', x = data[, "choice_1"])]
-ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x = data[, "choice_1"])]
+ctrl_photo_choices[, "choice_1" := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_1])]
+ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x = ctrl_photo_choices[, choice_1])]
 
-ctrl_photo_choices[, choice_2 := gsub(pattern = 'nike', replacement = 'none', x = data[, choice_2])]
-ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x = data[, choice_2])]
+ctrl_photo_choices[, choice_2 := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
+ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
 
 colnames(ctrl_photo_choices)
 View(ctrl_photo_choices)
