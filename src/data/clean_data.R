@@ -72,6 +72,58 @@ ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x =
 
 colnames(ctrl_photo_choices)
 View(ctrl_photo_choices)
+View(swipe_only)
+
+column1 <- swipe_only[, .(count = .N, var = unique(swipe1_c_m_a), by = swipe1_c_m_a)]
+column1
+
+
+##############
+# JA Scratch #
+##############
+test <- count(swipe_only, swipe1_c_m_a, sort = TRUE)[swipe1_c_m_a != ""]
+test_winner <- dplyr::count(swipe_only, swipe1_c_m_a, sort = TRUE)[2]
+test_loser <- dplyr::count(swipe_only, swipe1_c_m_a, sort = TRUE)[3]
+
+count(swipe_only)
+question <- c()
+winning_choice <- c()
+losing_choice <- c()
+
+for (i in names(swipe_only)) {
+  swipe_only %>% count(i)
+}
+
+
+for (i in 1:length(names(swipe_only))) {
+  question <- c(question, i)
+  print("okay")
+  tmp_colname <- names(swipe_only)[i]
+  print("okay2")
+  tmp_dt <- swipe_only[tmp_colname]
+  winning_choice <- c(winning_choice, count(tmp_dt, tmp_colname, sort = TRUE)[2])
+  losing_choice <- c(losing_choice, count(tmp_dt, tmp_colname, sort = TRUE)[3])
+}
+
+length(names(swipe_only))
+
+
+names(swipe_only)[1]
+cbind(question, winning_choice, losing_choice)
+swipe_only[,1]
+names(swipe_only)[1]
+test_winner <- count(swipe_only[,1],  sort = TRUE)
+
+
+
+swipe_only[ , lapply(.SD, sum)]  # Modify data
+
+for (i in swipe_only[1]) {
+  table(swipe_only[,i])
+}
+table(swipe_only[,1])
+
+fwrite(swipe_only, file = "../../data/interim/swipe_only.csv")
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
