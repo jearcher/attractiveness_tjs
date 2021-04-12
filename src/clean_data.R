@@ -10,8 +10,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ###################################################################
 # Read in interim data (fixed mislabeled data)
-data <- fread("../../data/interim/data_block_A_fixed.csv")
-
+data <- fread("../data/interim/data_block_A_fixed.csv")
 # Fix column naming error
 setnames(data, "swipe_6c_f_d", "swipe6_c_f_d")
 
