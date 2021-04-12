@@ -11,6 +11,10 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ###################################################################
 # Read in interim data (fixed mislabeled data)
 data <- fread("../data/interim/data_block_A_fixed.csv")
+
+# Read in data from JL pythin notebook
+swipe_counts <- fread('../data/interim/swipe_counts.csv')
+
 # Fix column naming error
 setnames(data, "swipe_6c_f_d", "swipe6_c_f_d")
 
@@ -69,60 +73,137 @@ ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x
 ctrl_photo_choices[, choice_2 := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
 ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
 
-colnames(ctrl_photo_choices)
-View(ctrl_photo_choices)
-View(swipe_only)
-
-column1 <- swipe_only[, .(count = .N, var = unique(swipe1_c_m_a), by = swipe1_c_m_a)]
-column1
+fwrite(swipe_only, file = "../../data/interim/swipe_only.csv")
 
 
 ##############
 # JA Scratch #
 ##############
-test <- count(swipe_only, swipe1_c_m_a, sort = TRUE)[swipe1_c_m_a != ""]
-test_winner <- dplyr::count(swipe_only, swipe1_c_m_a, sort = TRUE)[2]
-test_loser <- dplyr::count(swipe_only, swipe1_c_m_a, sort = TRUE)[3]
+swipe_counts <- fread("../data/interim/swipe_counts.csv")
 
-count(swipe_only)
-question <- c()
-winning_choice <- c()
-losing_choice <- c()
+#######################################
+# There are winners and losers,       #
+# But I truly am the loser            #
+# for the next couple hundred lines.  #
+#######################################
+winner	 <- t(count(swipe_only,	swipe1_c_m_a	, sort = TRUE)[2,1])
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_c_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_c_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_t_f_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_t_m_a	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_c_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_c_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_t_f_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_t_m_b	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_c_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_c_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_t_f_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_t_m_c	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_c_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_c_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe1_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe2_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe3_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe4_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe5_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe6_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe7_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe8_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe9_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe10_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe12_t_f_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe13_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe14_t_m_d	, sort = TRUE)[2,1]))
 
-for (i in names(swipe_only)) {
-  swipe_only %>% count(i)
-}
+winner <- data.table(winner)
+setnames(winner, "V1", "winner")
 
-
-for (i in 1:length(names(swipe_only))) {
-  question <- c(question, i)
-  print("okay")
-  tmp_colname <- names(swipe_only)[i]
-  print("okay2")
-  tmp_dt <- swipe_only[tmp_colname]
-  winning_choice <- c(winning_choice, count(tmp_dt, tmp_colname, sort = TRUE)[2])
-  losing_choice <- c(losing_choice, count(tmp_dt, tmp_colname, sort = TRUE)[3])
-}
-
-length(names(swipe_only))
-
-
-names(swipe_only)[1]
-cbind(question, winning_choice, losing_choice)
-swipe_only[,1]
-names(swipe_only)[1]
-test_winner <- count(swipe_only[,1],  sort = TRUE)
-
-
-
-swipe_only[ , lapply(.SD, sum)]  # Modify data
-
-for (i in swipe_only[1]) {
-  table(swipe_only[,i])
-}
-table(swipe_only[,1])
-
-fwrite(swipe_only, file = "../../data/interim/swipe_only.csv")
+swipe_counts <- cbind(swipe_counts, winner)
+fwrite(swipe_counts, file="../data/interim/swipe_count_winner.csv")
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
