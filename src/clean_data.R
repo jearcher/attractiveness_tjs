@@ -64,7 +64,7 @@ swipe_only_treat <- subset(swipe_only, select = swipe_only_treatment_cols)
 # - Double check list on all_phot_choices to manually add when only 1 photo was selected in treatment
 # - remove first row
 
-treat_photo_choices <- fread("../../data/interim/treat_photo_choices_incomplete.csv")
+treat_photo_choices <- fread("../data/interim/treat_photo_choices_incomplete.csv")
 
 ctrl_photo_choices <- copy(treat_photo_choices)
 ctrl_photo_choices[, "choice_1" := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_1])]
@@ -72,6 +72,8 @@ ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x
 
 ctrl_photo_choices[, choice_2 := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
 ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x = ctrl_photo_choices[, choice_2])]
+
+ctrl_photo_choices[, question := gsub(pattern="_t_", replacement = '_c_', x=ctrl_photo_choices[, question])]
 
 fwrite(swipe_only, file = "../../data/interim/swipe_only.csv")
 
@@ -203,7 +205,50 @@ winner <- data.table(winner)
 setnames(winner, "V1", "winner")
 
 swipe_counts <- cbind(swipe_counts, winner)
-fwrite(swipe_counts, file="../data/interim/swipe_count_winner.csv")
+setnames(swipe_counts, "V1", "question")
+
+
+View(treat_photo_choices)
+swipe_cts_treat_choice <- merge(swipe_counts, treat_photo_choices, by="question")
+swipe_cts_ctrl_choices <- merge(swipe_counts, ctrl_photo_choices, by="question")
+
+swipe_cts_choices <- rbind(swipe_cts_ctrl_choices, swipe_cts_treat_choice)
+
+# time to do some manual changes
+fwrite(swipe_cts_choices, file = "../data/interim/swipe_winner_unfixed.csv")
+
+### Magic of Excel took remarkably less time than Stack Overflow black hole ##
+
+# Bring it back
+swipe_winlose_counts <- fread("../data/interim/swipe_winner_loser_counts.csv")
+#####################################
+# Indicators for winner smile, logo #
+#####################################
+# smile 1=yes
+swipe_winlose_counts[, winner_smile := ifelse(test = grepl(pattern = "_smile", swipe_winlose_couts[, winner]),
+                                              yes = 1, no = 0)]
+# tjs 1=yes
+swipe_winlose_counts[, winner_tjs := ifelse(test = grepl(pattern = "_tjs", swipe_winlose_couts[, winner]),
+                                              yes = 1, no = 0)]
+# nike 1=yes
+swipe_winlose_counts[, winner_nike := ifelse(test = grepl(pattern = "_nike", swipe_winlose_couts[, winner]),
+                                            yes = 1, no = 0)]
+# none 1=yes
+swipe_winlose_counts[, winner_none := ifelse(test = grepl(pattern = "_none", swipe_winlose_couts[, winner]),
+                                             yes = 1, no = 0)]
+# man 1= yes
+swipe_winlose_counts[, winner_man := ifelse(test = grepl(pattern = "_m_", swipe_winlose_couts[, winner]),
+                                            yes = 1, no = 0)]
+                                             
+better_be_ones <- sum(swipe_winlose_counts[(winner_tjs)],
+                      swipe_winlose_counts[(winner_nike)],
+                      swipe_winlose_counts[(winner_none)])
+
+# Check that every winning photo is assigned 1 and only 1 logo
+swipe_winlose_counts[, better_be_ones := rowSums(.SD), .SDcols = c('winner_tjs', 'winner_nike', 'winner_none')]
+
+fwrite(swipe_winlose_counts, file = "../data/processed/main_swipe_table.csv")
+
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
