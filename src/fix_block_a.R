@@ -1,7 +1,9 @@
 library(data.table)
 library(tidyverse)
 
-data <- fread("../../data/raw/raw_survey_data_main.csv")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+data <- fread("../data/raw/raw_survey_data_main.csv")
 
 
 # Ensure no mislabeled logos in Block A Control

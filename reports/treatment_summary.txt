@@ -1,0 +1,844 @@
+\begin{spacing}{0.7}
+\begin{center}\textbf{ swipe\_only\_treat \\ 56 Variables~~~~~ 247 ~Observations}\end{center}
+\smallskip\hrule\smallskip{\small
+\vbox{\noindent\textbf{swipe1\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      10_m_nonsmile_nike  14_m_nonsmile_tjs
+Frequency                  19                 12
+Proportion              0.613              0.387
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value      16_m_smile_none  3_m_smile_nike
+Frequency               17              14
+Proportion           0.548           0.452
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                            
+Value        3_f_smile_none 8_f_nonsmile_tjs
+Frequency                19               12
+Proportion            0.613            0.387
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      15_f_nonsmile_tjs 4_f_nonsmile_none
+Frequency                  5                26
+Proportion             0.161             0.839
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value      5_f_smile_nike 9_f_smile_none
+Frequency              18             13
+Proportion          0.581          0.419
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value        17_m_smile_none 18_m_nonsmile_tjs
+Frequency                 21                10
+Proportion             0.677             0.323
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value      10_f_smile_tjs 7_f_smile_none
+Frequency               7             24
+Proportion          0.226          0.774
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      15_m_nonsmile_none   2_m_nonsmile_tjs
+Frequency                   9                 22
+Proportion               0.29               0.71
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value         1_m_smile_nike 5_m_nonsmile_none
+Frequency                 21                10
+Proportion             0.677             0.323
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value       12_f_nonsmile_tjs 6_f_nonesmile_nike
+Frequency                   5                 26
+Proportion              0.161              0.839
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      13_m_nonsmile_none     6_m_smile_nike
+Frequency                   7                 24
+Proportion              0.226              0.774
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value         1_f_smile_nike 2_f_nonsmile_none
+Frequency                 14                17
+Proportion             0.452             0.548
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_t\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      13_f_nonsmile_none    14_f_smile_nike
+Frequency                   2                 29
+Proportion              0.065              0.935
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_t\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+31&216&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value       12_m_smile_tjs 19_m_smile_none
+Frequency               13              18
+Proportion           0.419           0.581
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value      11_f_smile_nike  13_f_smile_tjs
+Frequency               29               3
+Proportion           0.906           0.094
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      3_f_nonsmile_none  8_f_nonsmile_tjs
+Frequency                 12                20
+Proportion             0.375             0.625
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value       1_f_smile_tjs 5_f_smile_none
+Frequency               8             24
+Proportion           0.25           0.75
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value      18_m_smile_tjs 6_m_smile_none
+Frequency              10             22
+Proportion          0.312          0.688
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value      13_m_smile_nike   4_m_smile_tjs
+Frequency               11              21
+Proportion           0.344           0.656
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value         10_f_smile_tjs 2_f_nonsmile_nike
+Frequency                 14                18
+Proportion             0.438             0.562
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value       7_m_nonsmile_tjs 9_m_nonsmile_none
+Frequency                  7                25
+Proportion             0.219             0.781
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      11_m_nonsmile_nike      3_m_smile_tjs
+Frequency                   9                 23
+Proportion              0.281              0.719
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value           1_m_smile_tjs 10_m_nonsmile_nike
+Frequency                  17                 15
+Proportion              0.531              0.469
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value          12_f_smile_tjs 14_f_nonsmile_nike
+Frequency                   8                 24
+Proportion               0.25               0.75
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      4_f_nonsmile_none    9_f_smile_nike
+Frequency                  5                27
+Proportion             0.156             0.844
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_t\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      6_f_nonsmile_none     7_f_smile_tjs
+Frequency                 13                19
+Proportion             0.406             0.594
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      14_m_nonsmile_none    16_m_smile_nike
+Frequency                   6                 26
+Proportion              0.188              0.812
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_t\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+32&215&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value         19_m_smile_tjs 2_m_nonsmile_none
+Frequency                 17                15
+Proportion             0.531             0.469
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value        10_f_smile_nike 14_f_nonsmile_tjs
+Frequency                 10                20
+Proportion             0.333             0.667
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&6\_m\_nonsmile\_nike \end{tabular}
+\begin{verbatim}
+                            
+Value      6_m_nonsmile_nike
+Frequency                 30
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&7\_f\_nonsmile\_nike \end{tabular}
+\begin{verbatim}
+                            
+Value      7_f_nonsmile_nike
+Frequency                 30
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      11_f_nonsmile_none     13_f_smile_tjs
+Frequency                  22                  8
+Proportion              0.733              0.267
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      15_f_nonsmile_tjs 2_f_nonsmile_none
+Frequency                  9                21
+Proportion               0.3               0.7
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value         1_m_smile_none 15_m_nonsmile_tjs
+Frequency                 12                18
+Proportion               0.4               0.6
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value      12_f_smile_nike  9_f_smile_none
+Frequency                3              27
+Proportion             0.1             0.9
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      12_m_nonsmile_nike      8_m_smile_tjs
+Frequency                  12                 18
+Proportion                0.4                0.6
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&14\_m\_nonsmile\_tjs \end{tabular}
+\begin{verbatim}
+                            
+Value      14_m_nonsmile_tjs
+Frequency                 30
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&1\_f\_nonsmile\_nike \end{tabular}
+\begin{verbatim}
+                            
+Value      1_f_nonsmile_nike
+Frequency                 30
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                            
+Value      4_m_nonsmile_tjs   7_m_smile_nike
+Frequency                14               16
+Proportion            0.467            0.533
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      11_m_nonsmile_tjs    9_m_smile_nike
+Frequency                  8                22
+Proportion             0.267             0.733
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_t\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      3_f_nonsmile_nike  5_f_nonsmile_tjs
+Frequency                  7                23
+Proportion             0.233             0.767
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_t\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&17\_m\_smile\_nike \end{tabular}
+\begin{verbatim}
+                          
+Value      17_m_smile_nike
+Frequency               30
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      16_m_nonsmile_nike      3_m_smile_tjs
+Frequency                  14                 16
+Proportion              0.467              0.533
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                            
+Value      2_m_nonsmile_tjs   5_m_smile_nike
+Frequency                14               16
+Proportion            0.467            0.533
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                            
+Value      5_f_nonsmile_tjs   7_f_smile_nike
+Frequency                13               17
+Proportion            0.433            0.567
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&12\_f\_smile\_nike \end{tabular}
+\begin{verbatim}
+                          
+Value      12_f_smile_nike
+Frequency               30
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value      10_f_smile_none   8_f_smile_tjs
+Frequency                9              21
+Proportion             0.3             0.7
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value       4_f_smile_tjs 6_f_smile_none
+Frequency               9             21
+Proportion            0.3            0.7
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value      13_m_nonsmile_tjs    9_m_smile_nike
+Frequency                  8                22
+Proportion             0.267             0.733
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      15_m_nonsmile_nike      4_m_smile_tjs
+Frequency                   6                 24
+Proportion                0.2                0.8
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                          
+Value       1_f_smile_none 14_f_smile_nike
+Frequency               10              20
+Proportion           0.333           0.667
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value          11_m_smile_tjs 12_m_nonsmile_none
+Frequency                  20                 10
+Proportion              0.667              0.333
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                        
+Value      15_f_smile_tjs 3_f_smile_none
+Frequency               9             21
+Proportion            0.3            0.7
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_t\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&2\_f\_nonsmile\_tjs \end{tabular}
+\begin{verbatim}
+                           
+Value      2_f_nonsmile_tjs
+Frequency                30
+Proportion                1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                              
+Value          1_m_smile_tjs 6_m_nonsmile_none
+Frequency                 17                13
+Proportion             0.567             0.433
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_t\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+30&217&2 \end{tabular}
+\begin{verbatim}
+                                                
+Value      10_m_nonsmile_none     7_m_smile_nike
+Frequency                  12                 18
+Proportion                0.4                0.6
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+}\end{spacing}

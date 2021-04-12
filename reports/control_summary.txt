@@ -1,0 +1,844 @@
+\begin{spacing}{0.7}
+\begin{center}\textbf{ swipe\_only\_ctrl \\ 56 Variables~~~~~ 247 ~Observations}\end{center}
+\smallskip\hrule\smallskip{\small
+\vbox{\noindent\textbf{swipe1\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&10\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      10_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&3\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      3_m_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&8\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      8_f_nonsmile_none
+Frequency                 31
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&4\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      4_f_nonsmile_none
+Frequency                 31
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&5\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      5_f_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&18\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      18_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&7\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      7_f_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&15\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      15_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&5\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      5_m_nonsmile_none
+Frequency                 31
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&6\_f\_nonesmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      6_f_nonesmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&13\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      13_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&2\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      2_f_nonsmile_none
+Frequency                 31
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_c\_f\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&13\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      13_f_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_c\_m\_a}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&19\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      19_m_smile_none
+Frequency               31
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&13\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      13_f_smile_none
+Frequency               32
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&8\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      8_f_nonsmile_none
+Frequency                 32
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&5\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      5_f_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&6\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      6_m_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&4\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      4_m_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&10\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      10_f_smile_none
+Frequency               32
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&7\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      7_m_nonsmile_none
+Frequency                 32
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&3\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      3_m_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&1\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      1_m_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&12\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      12_f_smile_none
+Frequency               32
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&9\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      9_f_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_c\_f\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&6\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      6_f_nonsmile_none
+Frequency                 32
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&16\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      16_m_smile_none
+Frequency               32
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_c\_m\_b}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+32&215&1&2\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      2_m_smile_none
+Frequency              32
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&14\_f\_nonsmile \end{tabular}
+\begin{verbatim}
+                        
+Value      14_f_nonsmile
+Frequency             30
+Proportion             1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&6\_m\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      6_m_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&7\_f\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      7_f_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&13\_f\_smile \end{tabular}
+\begin{verbatim}
+                     
+Value      13_f_smile
+Frequency          30
+Proportion          1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&2\_f\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      2_f_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&15\_m\_nonsmile \end{tabular}
+\begin{verbatim}
+                        
+Value      15_m_nonsmile
+Frequency             30
+Proportion             1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&9\_f\_smile \end{tabular}
+\begin{verbatim}
+                    
+Value      9_f_smile
+Frequency         30
+Proportion         1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&8\_m\_smile \end{tabular}
+\begin{verbatim}
+                    
+Value      8_m_smile
+Frequency         30
+Proportion         1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&14\_m\_nonsmile \end{tabular}
+\begin{verbatim}
+                        
+Value      14_m_nonsmile
+Frequency             30
+Proportion             1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&1\_f\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      1_f_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&4\_m\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      4_m_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&11\_m\_nonsmile \end{tabular}
+\begin{verbatim}
+                        
+Value      11_m_nonsmile
+Frequency             30
+Proportion             1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_c\_f\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&5\_f\_nonsmile \end{tabular}
+\begin{verbatim}
+                       
+Value      5_f_nonsmile
+Frequency            30
+Proportion            1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_c\_m\_c}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+30&217&1&17\_m\_smile \end{tabular}
+\begin{verbatim}
+                     
+Value      17_m_smile
+Frequency          30
+Proportion          1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe1\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&3\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      3_m_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe2\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&5\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      5_m_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe3\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&7\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      7_f_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe4\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&12\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      12_f_smile_none
+Frequency               31
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe5\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&10\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      10_f_smile_none
+Frequency               31
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe6\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&4\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      4_f_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe7\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&9\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      9_m_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe8\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&15\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      15_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe9\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&1\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      1_f_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe10\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&11\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      11_m_smile_none
+Frequency               31
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe11\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&15\_f\_smile\_none \end{tabular}
+\begin{verbatim}
+                          
+Value      15_f_smile_none
+Frequency               31
+Proportion               1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe12\_c\_f\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&2\_f\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                            
+Value      2_f_nonsmile_none
+Frequency                 31
+Proportion                 1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe13\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&1\_m\_smile\_none \end{tabular}
+\begin{verbatim}
+                         
+Value      1_m_smile_none
+Frequency              31
+Proportion              1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{swipe14\_c\_m\_d}
+
+{\smaller
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+31&216&1&10\_m\_nonsmile\_none \end{tabular}
+\begin{verbatim}
+                             
+Value      10_m_nonsmile_none
+Frequency                  31
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+}\end{spacing}
