@@ -280,9 +280,39 @@ setnames(loser_half, 'losing_count', 'times_chosen')
 
 photo_counts <- rbind(winner_half, loser_half)
 
-test <- photo_counts[ , .(total_counts= sum(times_chosen)), keyby=photo]
+photo_counts[, treat := ifelse(test = grepl(pattern = "_t_", photo_counts[, question]),
+                                            yes = 't', no = 'c')]
 
-?gsub()
+# Cols for blocks
+photo_counts[ , survey_block := case_when(
+  grepl(pattern = "_a", photo_counts[, question]) ~ "block_a",
+  grepl(pattern = "_b", photo_counts[, question]) ~ "block_b",
+  grepl(pattern = "f_c", photo_counts[, question]) | grepl(pattern = "m_c", photo_counts[, question]) ~ "block_c",
+  grepl(pattern = "_d", photo_counts[, question]) ~ "block_d",
+  
+)]
+# View(photo_counts)
+
+
+photo_counts[ , photo_treat := paste(photo_counts$photo, photo_counts$treat, sep = "_")]
+photo_counts[ , photo_block := paste(photo_counts$photo_treat, photo_counts$survey_block, sep = "_")]
+
+
+View(photo_counts)
+analysis_table <- photo_counts[ , .(total_counts= sum(times_chosen)), keyby=photo_block]
+View(analysis_table)
+
+string_splits <- read.table(text = analysis_table[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
+
+analysis_table[, photo_id := paste(string_splits$V1, string_splits$V2, sep="_")]
+
+analysis_table[, smile := string_splits$V3]
+analysis_table[, logo := string_splits$V4]
+analysis_table[, treat := string_splits$V5]
+abnalysis_tabole[, survey_block := string_splits$V7]
+View(analysis_table)
+
+fwrite(analysis_table, file="../data/processed/analysis_table.csv")
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
@@ -293,7 +323,6 @@ control_summary <- Hmisc::describe(swipe_only_ctrl)
 sink("../../reports/treatment_summary.txt")
 Hmisc::latex(treatment_summary,
              file = "")
-sink()
 
 
 sink("../../reports/control_summary.txt")
