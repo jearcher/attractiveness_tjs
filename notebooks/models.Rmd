@@ -1,0 +1,46 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(data.table)
+library(dplyr)
+```
+ 
+
+```{r}
+data <- fread("../data/processed/analysis_table.csv")
+
+data[, treat_ind := ifelse(treat=='t',1,0)]
+
+data[, treat_with_logo := ifelse((logo != 'none' & treat == 't'),1 ,0)]
+
+data[, tjs_logo := ifelse(test = grepl(pattern = "tjs", data[, logo]),
+                                              yes = 1, no = 0)]
+
+data[, nike_logo := ifelse(test = grepl(pattern = "nike", data[, logo]),
+                                              yes = 1, no = 0)]
+
+data[, no_logo := ifelse(test = grepl(pattern = "none", data[, logo]),
+                                              yes = 1, no = 0)]
+data[, survey_block := gsub("^.*_", "", data$photo_block)]
+
+gsub("^.*_", "", string_thing)
+
+View(data)
+```
+
+```{r}
+model <- lm(total_counts ~ tjs_logo + survey_block, data)
+
+summary(model)
+```
+
+
+```{r}
+model2 <- lm(total_counts ~ tjs_logo*treat_ind*survey_block, data)
+summary(model2)
+```
+
+

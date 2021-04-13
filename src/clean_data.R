@@ -208,7 +208,7 @@ swipe_counts <- cbind(swipe_counts, winner)
 setnames(swipe_counts, "V1", "question")
 
 
-View(treat_photo_choices)
+
 swipe_cts_treat_choice <- merge(swipe_counts, treat_photo_choices, by="question")
 swipe_cts_ctrl_choices <- merge(swipe_counts, ctrl_photo_choices, by="question")
 
@@ -225,30 +225,94 @@ swipe_winlose_counts <- fread("../data/interim/swipe_winner_loser_counts.csv")
 # Indicators for winner smile, logo #
 #####################################
 # smile 1=yes
-swipe_winlose_counts[, winner_smile := ifelse(test = grepl(pattern = "_smile", swipe_winlose_couts[, winner]),
+swipe_winlose_counts[, winner_smile := ifelse(test = grepl(pattern = "_smile", swipe_winlose_counts[, winner]),
                                               yes = 1, no = 0)]
 # tjs 1=yes
-swipe_winlose_counts[, winner_tjs := ifelse(test = grepl(pattern = "_tjs", swipe_winlose_couts[, winner]),
+swipe_winlose_counts[, winner_tjs := ifelse(test = grepl(pattern = "_tjs", swipe_winlose_counts[, winner]),
                                               yes = 1, no = 0)]
 # nike 1=yes
-swipe_winlose_counts[, winner_nike := ifelse(test = grepl(pattern = "_nike", swipe_winlose_couts[, winner]),
+swipe_winlose_counts[, winner_nike := ifelse(test = grepl(pattern = "_nike", swipe_winlose_counts[, winner]),
                                             yes = 1, no = 0)]
 # none 1=yes
-swipe_winlose_counts[, winner_none := ifelse(test = grepl(pattern = "_none", swipe_winlose_couts[, winner]),
+swipe_winlose_counts[, winner_none := ifelse(test = grepl(pattern = "_none", swipe_winlose_counts[, winner]),
                                              yes = 1, no = 0)]
 # man 1= yes
-swipe_winlose_counts[, winner_man := ifelse(test = grepl(pattern = "_m_", swipe_winlose_couts[, winner]),
+swipe_winlose_counts[, winner_man := ifelse(test = grepl(pattern = "_m_", swipe_winlose_counts[, winner]),
                                             yes = 1, no = 0)]
-                                             
-better_be_ones <- sum(swipe_winlose_counts[(winner_tjs)],
-                      swipe_winlose_counts[(winner_nike)],
-                      swipe_winlose_counts[(winner_none)])
+
+# treat yes=1
+swipe_winlose_counts[, treat := ifelse(test = grepl(pattern = "_t_", swipe_winlose_counts[, question]),
+                                            yes = 1, no = 0)]
+
+# block A
+swipe_winlose_counts[, block_a := ifelse(test = grepl(pattern = "_a", swipe_winlose_counts[, question]),
+                                       yes = 1, no = 0)]
+# block B
+swipe_winlose_counts[, block_b := ifelse(test = grepl(pattern = "_b", swipe_winlose_counts[, question]),
+                                         yes = 1, no = 0)]
+
+# block C
+swipe_winlose_counts[, block_c := ifelse(test = (grepl(pattern = "f_c", swipe_winlose_counts[, question]) | grepl(pattern = "m_c", swipe_winlose_counts[, question])),
+                                         yes = 1, no = 0)]
+grepl(pattern = "f_c", swipe_winlose_counts[, question]) | grepl(pattern = "m_c", swipe_winlose_counts[, question])
+# block D
+swipe_winlose_counts[, block_d := ifelse(test = grepl(pattern = "_d", swipe_winlose_counts[, question]),
+                                         yes = 1, no = 0)]
 
 # Check that every winning photo is assigned 1 and only 1 logo
 swipe_winlose_counts[, better_be_ones := rowSums(.SD), .SDcols = c('winner_tjs', 'winner_nike', 'winner_none')]
 
 fwrite(swipe_winlose_counts, file = "../data/processed/main_swipe_table.csv")
 
+
+#########################################
+# Want each photo as a row              #
+# with vars for tj logo, nike, man, etc #
+#########################################
+# First make a table of just photo names and counts, row-binding winners and losers
+winner_half <- swipe_winlose_counts[, c('question', 'winner', 'winning_count')]
+setnames(winner_half, 'winner', 'photo')
+setnames(winner_half, 'winning_count', 'times_chosen')
+
+loser_half <- swipe_winlose_counts[, c('question', 'loser', 'losing_count')]
+setnames(loser_half, 'loser', 'photo')
+setnames(loser_half, 'losing_count', 'times_chosen')
+
+photo_counts <- rbind(winner_half, loser_half)
+
+photo_counts[, treat := ifelse(test = grepl(pattern = "_t_", photo_counts[, question]),
+                                            yes = 't', no = 'c')]
+
+# Cols for blocks
+photo_counts[ , survey_block := case_when(
+  grepl(pattern = "_a", photo_counts[, question]) ~ "block_a",
+  grepl(pattern = "_b", photo_counts[, question]) ~ "block_b",
+  grepl(pattern = "f_c", photo_counts[, question]) | grepl(pattern = "m_c", photo_counts[, question]) ~ "block_c",
+  grepl(pattern = "_d", photo_counts[, question]) ~ "block_d",
+  
+)]
+# View(photo_counts)
+
+
+photo_counts[ , photo_treat := paste(photo_counts$photo, photo_counts$treat, sep = "_")]
+photo_counts[ , photo_block := paste(photo_counts$photo_treat, photo_counts$survey_block, sep = "_")]
+
+
+View(photo_counts)
+analysis_table <- photo_counts[ , .(total_counts= sum(times_chosen)), keyby=photo_block]
+View(analysis_table)
+
+string_splits <- read.table(text = analysis_table[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
+
+analysis_table[, photo_id := paste(string_splits$V1, string_splits$V2, sep="_")]
+
+analysis_table[, smile := string_splits$V3]
+analysis_table[, logo := string_splits$V4]
+analysis_table[, treat := string_splits$V5]
+abnalysis_tabole[, survey_block := string_splits$V7]
+View(analysis_table)
+
+fwrite(analysis_table, file="../data/processed/analysis_table.csv")
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
@@ -259,7 +323,6 @@ control_summary <- Hmisc::describe(swipe_only_ctrl)
 sink("../../reports/treatment_summary.txt")
 Hmisc::latex(treatment_summary,
              file = "")
-sink()
 
 
 sink("../../reports/control_summary.txt")
