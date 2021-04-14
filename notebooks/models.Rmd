@@ -26,15 +26,12 @@ data[, no_logo := ifelse(test = grepl(pattern = "none", data[, logo]),
                                               yes = 1, no = 0)]
 data[, survey_block := gsub("^.*_", "", data$photo_block)]
 
-gsub("^.*_", "", string_thing)
-
-View(data)
+names(data)
 ```
 
 ```{r}
-model <- lm(total_counts ~ tjs_logo + survey_block, data)
+model_1 <- lm(total_counts ~ tjs_logo + survey_block, data)
 
-summary(model)
 ```
 
 
@@ -43,4 +40,33 @@ model2 <- lm(total_counts ~ tjs_logo*treat_ind*survey_block, data)
 summary(model2)
 ```
 
+
+```{r}
+interim <- data[logo != "nike"]
+# View(interim)
+tjs_only <- data[logo == "tjs"]
+View(tjs_only)
+
+photo_name_split <- read.table(text = interim[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
+interim[, join_id := paste(photo_name_split$V1, photo_name_split$V2, photo_name_split$V3, photo_name_split$V6, photo_name_split$V7, sep="_")]
+
+# View(interim)
+tjs_only <- interim[logo=="tjs"]
+tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile")]
+rows_to_keep <- tjs_only[, join_id]
+none_c_only <- interim[logo=="none" & treat_ind<1]
+none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile")]
+none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep)
+
+
+
+# none_c_rows <- none_c_matched[, join_id]
+# tjs_issue <- subset(tjs_only, !(join_id %in% none_c_rows))
+
+# View(none_c_matched)
+tjs_vs_control <- rbind(tjs_only, none_c_only)
+
+
+
+```
 

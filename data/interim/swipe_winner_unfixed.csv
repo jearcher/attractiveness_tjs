@@ -4,6 +4,7 @@ swipe10_c_f_b,32,0,12_f_smile_none,14_f_nonsmile_none,12_f_smile_none
 swipe10_c_f_c,30,0,1_f_nonsmile,8_f_nonsmile_none,1_f_nonsmile_none
 swipe10_c_m_d,31,0,11_m_smile_none,12_m_nonsmile_none,11_m_smile_none
 swipe11_c_f_b,32,0,9_f_smile_none,4_f_nonsmile_none,9_f_smile_none
+swipe11_c_f_d,31,0,15_f_smile_none,3_f_smile_none,15_f_smile_none
 swipe11_c_m_a,31,0,13_m_nonsmile_none,6_m_smile_none,13_m_nonsmile_none
 swipe11_c_m_c,30,0,4_m_nonsmile,7_m_smile_none,4_m_nonsmile_none
 swipe12_c_f_a,31,0,2_f_nonsmile_none,2_f_nonsmile_none,1_f_smile_none
@@ -59,9 +60,9 @@ swipe10_t_f_b,24,8,14_f_nonsmile_nike,14_f_nonsmile_nike,12_f_smile_tjs
 swipe10_t_f_c,30,0,1_f_nonsmile_nike,8_f_nonsmile_nike,1_f_nonsmile_nike
 swipe10_t_m_d,20,10,11_m_smile_tjs,12_m_nonsmile_none,11_m_smile_tjs
 swipe11_t_f_b,27,5,9_f_smile_nike,4_f_nonsmile_none,9_f_smile_nike
+swipe11_t_f_d,21,9,3_f_smile_none,3_f_smile_none,15_f_smile_tjs
 swipe11_t_m_a,24,7,6_m_smile_nike,6_m_smile_nike,13_m_nonsmile_none
 swipe11_t_m_c,16,14,7_m_smile_nike,7_m_smile_nike,4_m_nonsmile_tjs
-swipe11_t_m_d,21,9,3_f_smile_none,3_f_smile_none,15_f_smile_tjs
 swipe12_t_f_a,17,14,2_f_nonsmile_none,2_f_nonsmile_none,1_f_smile_nike
 swipe12_t_f_b,19,13,7_f_smile_tjs,7_f_smile_tjs,6_f_nonsmile_none
 swipe12_t_f_d,30,0,2_f_nonsmile_tjs,9_f_smile_tjs,2_f_nonsmile_tjs

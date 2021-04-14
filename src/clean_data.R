@@ -17,6 +17,7 @@ swipe_counts <- fread('../data/interim/swipe_counts.csv')
 
 # Fix column naming error
 setnames(data, "swipe_6c_f_d", "swipe6_c_f_d")
+setnames(data, 'swipe11_t_m_d', 'swipe11_t_f_d')
 
 # First two columns are not observations 
 # (Why this has to be done twice instead of data[-2,] is beyond me)
@@ -27,10 +28,9 @@ data <- data[-1,]
 cols2keep <- colnames(data)[c(9, 19:364)]
 data <- subset(data, select =  cols2keep)
 
-data[ , ]
 
 # Write to processed
-fwrite(data, file = "../../data/processed/processed_data.csv")
+fwrite(data, file = "../data/processed/processed_data.csv")
 
 
 ##########################
@@ -39,6 +39,7 @@ fwrite(data, file = "../../data/processed/processed_data.csv")
 
 # get all colnames that contain 'swipe'
 swipe_cols <- colnames(data)[grepl(pattern = "swipe", x = colnames(data))]
+# View(swipe_cols)
 swipe_data <- subset(data, select = swipe_cols)
 
 swipes_phys_cols <- colnames(swipe_data)[grepl(pattern = "phys_", x = colnames(swipe_data))]
@@ -49,6 +50,8 @@ swipe_person <- subset(swipe_data, select = swipes_person_cols)
 
 swipe_only_cols <- colnames(swipe_data)[!grepl(pattern = "phys_", x = colnames(swipe_data)) & !grepl(pattern = "person_", x = colnames(swipe_data))]
 swipe_only <- subset(swipe_data, select = swipe_only_cols)
+
+fwrite(swipe_only, file = "../data/interim/swipe_only.csv")
 
 swipe_only_control_cols <- colnames(swipe_only)[grepl(pattern = "_c_", x = colnames(swipe_only))]
 swipe_only_treatment_cols <- colnames(swipe_only)[grepl(pattern = "_t_", x = colnames(swipe_only))]
@@ -64,8 +67,7 @@ swipe_only_treat <- subset(swipe_only, select = swipe_only_treatment_cols)
 # - Double check list on all_phot_choices to manually add when only 1 photo was selected in treatment
 # - remove first row
 
-treat_photo_choices <- fread("../data/interim/treat_photo_choices_incomplete.csv")
-
+treat_photo_choices <- fread("../data/interim/treat_photo_choices_fixed.csv")
 ctrl_photo_choices <- copy(treat_photo_choices)
 ctrl_photo_choices[, "choice_1" := gsub(pattern = 'nike', replacement = 'none', x = ctrl_photo_choices[, choice_1])]
 ctrl_photo_choices[, "choice_1" := gsub(pattern = 'tjs', replacement = 'none', x = ctrl_photo_choices[, choice_1])]
@@ -75,13 +77,7 @@ ctrl_photo_choices[, choice_2 := gsub(pattern = 'tjs', replacement = 'none', x =
 
 ctrl_photo_choices[, question := gsub(pattern="_t_", replacement = '_c_', x=ctrl_photo_choices[, question])]
 
-fwrite(swipe_only, file = "../../data/interim/swipe_only.csv")
 
-
-##############
-# JA Scratch #
-##############
-swipe_counts <- fread("../data/interim/swipe_counts.csv")
 
 #######################################
 # There are winners and losers,       #
@@ -196,13 +192,15 @@ winner	<- rbind(winner, t(count(swipe_only,	swipe7_t_m_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe8_t_m_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe9_t_f_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe10_t_m_d	, sort = TRUE)[2,1]))
-winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_m_d	, sort = TRUE)[2,1]))
+winner	<- rbind(winner, t(count(swipe_only,	swipe11_t_f_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe12_t_f_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe13_t_m_d	, sort = TRUE)[2,1]))
 winner	<- rbind(winner, t(count(swipe_only,	swipe14_t_m_d	, sort = TRUE)[2,1]))
 
 winner <- data.table(winner)
 setnames(winner, "V1", "winner")
+
+
 
 swipe_counts <- cbind(swipe_counts, winner)
 setnames(swipe_counts, "V1", "question")
@@ -298,9 +296,9 @@ photo_counts[ , photo_treat := paste(photo_counts$photo, photo_counts$treat, sep
 photo_counts[ , photo_block := paste(photo_counts$photo_treat, photo_counts$survey_block, sep = "_")]
 
 
-View(photo_counts)
+# View(photo_counts)
 analysis_table <- photo_counts[ , .(total_counts= sum(times_chosen)), keyby=photo_block]
-View(analysis_table)
+# View(analysis_table)
 
 string_splits <- read.table(text = analysis_table[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
 
@@ -309,35 +307,35 @@ analysis_table[, photo_id := paste(string_splits$V1, string_splits$V2, sep="_")]
 analysis_table[, smile := string_splits$V3]
 analysis_table[, logo := string_splits$V4]
 analysis_table[, treat := string_splits$V5]
-abnalysis_tabole[, survey_block := string_splits$V7]
-View(analysis_table)
+analysis_table[, survey_block := string_splits$V7]
+# View(analysis_table)
 
 fwrite(analysis_table, file="../data/processed/analysis_table.csv")
 #############################################################################
 # sink() calls to print output of Hmisc::describe() (pdf summaries of vars) #
 #############################################################################
-library(Hmisc)
-treatment_summary <- Hmisc::describe(swipe_only_treat)
-control_summary <- Hmisc::describe(swipe_only_ctrl)
-
-sink("../../reports/treatment_summary.txt")
-Hmisc::latex(treatment_summary,
-             file = "")
-
-
-sink("../../reports/control_summary.txt")
-Hmisc::latex(control_summary,
-             file = "")
-sink()
-
-# Reorder swipe_only to alternate treatment and control (makes viewing summaries easier)
-setcolorder(swipe_only, neworder = c(rbind(swipe_only_control_cols, swipe_only_treatment_cols)))
-
-total_summary <-  Hmisc::describe(swipe_only)
-sink("../../reports/treat_control_summary.txt")
-Hmisc::latex(total_summary,
-             file = "")
-sink()
+# library(Hmisc)
+# treatment_summary <- Hmisc::describe(swipe_only_treat)
+# control_summary <- Hmisc::describe(swipe_only_ctrl)
+# 
+# sink("../../reports/treatment_summary.txt")
+# Hmisc::latex(treatment_summary,
+#              file = "")
+# 
+# 
+# sink("../../reports/control_summary.txt")
+# Hmisc::latex(control_summary,
+#              file = "")
+# sink()
+# 
+# # Reorder swipe_only to alternate treatment and control (makes viewing summaries easier)
+# setcolorder(swipe_only, neworder = c(rbind(swipe_only_control_cols, swipe_only_treatment_cols)))
+# 
+# total_summary <-  Hmisc::describe(swipe_only)
+# sink("../../reports/treat_control_summary.txt")
+# Hmisc::latex(total_summary,
+#              file = "")
+# sink()
 
 
 

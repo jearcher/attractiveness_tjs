@@ -1,7 +1,7 @@
 question,winning_count,losing_count,winner,loser,choice_1,choice_2
 swipe10_c_f_a,31,0,6_f_nonesmile_none,12_f_nonsmile_none,6_f_nonesmile_none,12_f_nonsmile_none
 swipe10_c_f_b,32,0,12_f_smile_none,14_f_nonsmile_none,14_f_nonsmile_none,12_f_smile_none
-swipe10_c_f_c,30,0,1_f_nonsmile_none,1_f_nonsmile_none,8_f_nonsmile_none,1_f_nonsmile_none
+swipe10_c_f_c,30,0,1_f_nonsmile_none,8_f_nonsmile_none,8_f_nonsmile_none,1_f_nonsmile_none
 swipe10_c_m_d,31,0,11_m_smile_none,12_m_nonsmile_none,12_m_nonsmile_none,11_m_smile_none
 swipe11_c_f_b,32,0,9_f_smile_none,4_f_nonsmile_none,4_f_nonsmile_none,9_f_smile_none
 swipe11_c_m_a,31,0,13_m_nonsmile_none,6_m_smile_none,6_m_smile_none,13_m_nonsmile_none
@@ -14,7 +14,7 @@ swipe13_c_f_a,31,0,13_f_nonsmile_none,14_f_smile_none,14_f_smile_none,13_f_nonsm
 swipe13_c_f_c,30,0,5_f_nonsmile_none,3_f_nonsmile_none,3_f_nonsmile_none,5_f_nonsmile_none
 swipe13_c_m_b,32,0,16_m_smile_none,14_m_nonsmile_none,14_m_nonsmile_none,16_m_smile_none
 swipe13_c_m_d,31,0,1_m_smile_none,6_m_nonsmile_none,6_m_nonsmile_none,1_m_smile_none
-swipe14_c_m_a,31,0,19_m_smile_none,19_m_smile_none,19_m_smile_none,12_m_smile_none
+swipe14_c_m_a,31,0,19_m_smile_none,12_m_smile_none,19_m_smile_none,12_m_smile_none
 swipe14_c_m_b,32,0,2_m_smile_none,19_m_smile_none,19_m_smile_none,2_m_nonsmile_none
 swipe14_c_m_c,30,0,17_m_smile_none,3_m_smile_none,3_m_smile_none,17_m_smile_none
 swipe14_c_m_d,31,0,10_m_nonsmile_none,7_m_smile_none,7_m_smile_none,10_m_nonsmile_none
@@ -30,13 +30,13 @@ swipe3_c_f_a,31,0,8_f_nonsmile_none,3_f_smile_none,3_f_smile_none,8_f_nonsmile_n
 swipe3_c_f_b,32,0,5_f_smile_none,1_f_smile_none,5_f_smile_none,1_f_smile_none
 swipe3_c_f_c,30,0,7_f_nonsmile_none,6_f_smile_none,6_f_smile_none,7_f_nonsmile_none
 swipe3_c_f_d,31,0,7_f_smile_none,5_f_nonsmile_none,5_f_nonsmile_none,7_f_smile_none
-swipe4_c_f_a,31,0,4_f_nonsmile_none,4_f_nonsmile_none,4_f_nonsmile_none,15_f_nonsmile_none
-swipe4_c_f_c,30,0,13_f_smile_none,13_f_smile_none,11_f_nonsmile_none,13_f_smile_none
+swipe4_c_f_a,31,0,4_f_nonsmile_none,15_f_nonsmile_none,4_f_nonsmile_none,15_f_nonsmile_none
+swipe4_c_f_c,30,0,13_f_smile_none,11_f_nonsmile_none,11_f_nonsmile_none,13_f_smile_none
 swipe4_c_f_d,31,0,12_f_smile_none,13_f_nonsmile_none,13_f_nonsmile_none,12_f_smile_none
 swipe4_c_m_b,32,0,6_m_smile_none,18_m_smile_none,6_m_smile_none,18_m_smile_none
 swipe5_c_f_a,31,0,5_f_smile_none,9_f_smile_none,9_f_smile_none,5_f_smile_none
 swipe5_c_f_c,30,0,2_f_nonsmile_none,15_f_nonsmile_none,15_f_nonsmile_none,2_f_nonsmile_none
-swipe5_c_f_d,31,0,10_f_smile_none,10_f_smile_none,8_f_smile_none,10_f_smile_none
+swipe5_c_f_d,31,0,10_f_smile_none,8_f_smile_none,8_f_smile_none,10_f_smile_none
 swipe5_c_m_b,32,0,4_m_smile_none,13_m_smile_none,4_m_smile_none,13_m_smile_none
 swipe6_c_f_b,32,0,10_f_smile_none,2_f_nonsmile_none,2_f_nonsmile_none,10_f_smile_none
 swipe6_c_f_d,31,0,4_f_smile_none,6_f_smile_none,6_f_smile_none,4_f_smile_none
@@ -47,13 +47,13 @@ swipe7_c_f_c,30,0,9_f_smile_none,12_f_smile_none,12_f_smile_none,9_f_smile_none
 swipe7_c_m_b,32,0,7_m_nonsmile_none,9_m_nonsmile_none,9_m_nonsmile_none,7_m_nonsmile_none
 swipe7_c_m_d,31,0,9_m_smile_none,13_m_nonsmile_none,13_m_nonsmile_none,9_m_smile_none
 swipe8_c_m_a,31,0,15_m_nonsmile_none,2_m_nonsmile_none,15_m_nonsmile_none,2_m_nonsmile_none
-swipe8_c_m_b,32,0,3_m_smile_none,3_m_smile_none,11_m_nonsmile_none,3_m_smile_none
+swipe8_c_m_b,32,0,3_m_smile_none,11_m_nonsmile_none,11_m_nonsmile_none,3_m_smile_none
 swipe8_c_m_c,30,0,8_m_smile_none,12_m_nonsmile_none,12_m_nonsmile_none,8_m_smile_none
 swipe8_c_m_d,31,0,15_m_nonsmile_none,4_m_smile_none,4_m_smile_none,15_m_nonsmile_none
 swipe9_c_f_d,31,0,1_f_smile_none,14_f_smile_none,14_f_smile_none,1_f_smile_none
 swipe9_c_m_a,31,0,5_m_nonsmile_none,1_m_smile_none,1_m_smile_none,5_m_nonsmile_none
 swipe9_c_m_b,32,0,1_m_smile_none,10_m_nonsmile_none,10_m_nonsmile_none,1_m_smile_none
-swipe9_c_m_c,30,0,14_m_nonsmile_none,14_m_nonsmile_none,2_m_nonsmile_none,14_m_nonsmile_none
+swipe9_c_m_c,30,0,14_m_nonsmile_none,2_m_nonsmile_none,2_m_nonsmile_none,14_m_nonsmile_none
 swipe10_t_f_a,26,5,6_f_nonesmile_nike,12_f_nonsmile_tjs,6_f_nonesmile_nike,12_f_nonsmile_tjs
 swipe10_t_f_b,24,8,14_f_nonsmile_nike,12_f_smile_tjs,14_f_nonsmile_nike,12_f_smile_tjs
 swipe10_t_f_c,30,0,1_f_nonsmile_nike,8_f_nonsmile_nike,8_f_nonsmile_nike,1_f_nonsmile_nike
@@ -61,7 +61,7 @@ swipe10_t_m_d,20,10,11_m_smile_tjs,12_m_nonsmile_none,12_m_nonsmile_none,11_m_sm
 swipe11_t_f_b,27,5,9_f_smile_nike,4_f_nonsmile_none,4_f_nonsmile_none,9_f_smile_nike
 swipe11_t_m_a,24,7,6_m_smile_nike,13_m_nonsmile_none,6_m_smile_nike,13_m_nonsmile_none
 swipe11_t_m_c,16,14,7_m_smile_nike,4_m_nonsmile_tjs,7_m_smile_nike,4_m_nonsmile_tjs
-swipe11_t_m_d,21,9,3_f_smile_none,15_f_smile_tjs,3_f_smile_none,15_f_smile_tjs
+swipe11_t_f_d,21,9,3_f_smile_none,15_f_smile_tjs,3_f_smile_none,15_f_smile_tjs
 swipe12_t_f_a,17,14,2_f_nonsmile_none,1_f_smile_nike,2_f_nonsmile_none,1_f_smile_nike
 swipe12_t_f_b,19,13,7_f_smile_tjs,6_f_nonsmile_none,7_f_smile_tjs,6_f_nonsmile_none
 swipe12_t_f_d,30,0,2_f_nonsmile_tjs,9_f_smile_tjs,9_f_smile_tjs,2_f_nonsmile_tjs
@@ -110,3 +110,4 @@ swipe9_t_f_d,20,10,14_f_smile_nike,1_f_smile_none,14_f_smile_nike,1_f_smile_none
 swipe9_t_m_a,21,10,1_m_smile_nike,5_m_nonsmile_none,1_m_smile_nike,5_m_nonsmile_none
 swipe9_t_m_b,17,15,1_m_smile_tjs,10_m_nonsmile_nike,10_m_nonsmile_nike,1_m_smile_tjs
 swipe9_t_m_c,30,0,14_m_nonsmile_tjs,2_m_nonsmile_tjs,2_m_nonsmile_tjs,14_m_nonsmile_tjs
+swipe11_c_f_d,31,0,15_f_smile_none,3_f_smile_none,,15_f_smile_tjs
