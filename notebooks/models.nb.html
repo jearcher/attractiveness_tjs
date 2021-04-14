@@ -1799,97 +1799,139 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YVssIHN1cnZleV9ibG9jayA6PSBnc3ViKFwiXi4qX1wiLCBkYXRhJHBob3RvX2Jsb2NrKV1cblxuYGBgIn0= -->
-<pre class="r"><code>data[, survey_block := gsub(&quot;^.*_&quot;, data$photo_block)]
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxuYGBgIn0= -->
+<pre class="r"><code>library(data.table)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZ3N1YihcIl4uKl9cIiwgZGF0YSRwaG90b19ibG9jaykgOiBcbiAgYXJndW1lbnQgXCJ4XCIgaXMgbWlzc2luZywgd2l0aCBubyBkZWZhdWx0XG4ifQ== -->
-<pre><code>Error in gsub(&quot;^.*_&quot;, data$photo_block) : 
-  argument &quot;x&quot; is missing, with no default</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG5kYXRhLnRhYmxlIDEuMTMuMiB1c2luZyAxIHRocmVhZHMgKHNlZSA/Z2V0RFR0aHJlYWRzKS4gIExhdGVzdCBuZXdzOiByLWRhdGF0YWJsZS5jb21cbioqKioqKioqKipcblRoaXMgaW5zdGFsbGF0aW9uIG9mIGRhdGEudGFibGUgaGFzIG5vdCBkZXRlY3RlZCBPcGVuTVAgc3VwcG9ydC4gSXQgc2hvdWxkIHN0aWxsIHdvcmsgYnV0IGluIHNpbmdsZS10aHJlYWRlZCBtb2RlLlxuVGhpcyBpcyBhIE1hYy4gUGxlYXNlIHJlYWQgaHR0cHM6Ly9tYWMuci1wcm9qZWN0Lm9yZy9vcGVubXAvLiBQbGVhc2UgZW5nYWdlIHdpdGggQXBwbGUgYW5kIGFzayB0aGVtIGZvciBzdXBwb3J0LiBDaGVjayByLWRhdGF0YWJsZS5jb20gZm9yIHVwZGF0ZXMsIGFuZCBvdXIgTWFjIGluc3RydWN0aW9ucyBoZXJlOiBodHRwczovL2dpdGh1Yi5jb20vUmRhdGF0YWJsZS9kYXRhLnRhYmxlL3dpa2kvSW5zdGFsbGF0aW9uLiBBZnRlciBzZXZlcmFsIHllYXJzIG9mIG1hbnkgcmVwb3J0cyBvZiBpbnN0YWxsYXRpb24gcHJvYmxlbXMgb24gTWFjLCBpdCdzIHRpbWUgdG8gZ2luZ2VybHkgcG9pbnQgb3V0IHRoYXQgdGhlcmUgaGF2ZSBiZWVuIG5vIHNpbWlsYXIgcHJvYmxlbXMgb24gV2luZG93cyBvciBMaW51eC5cbioqKioqKioqKipcbiJ9 -->
+<pre><code>Registered S3 method overwritten by &#39;data.table&#39;:
+  method           from
+  print.data.table     
+data.table 1.13.2 using 1 threads (see ?getDTthreads).  Latest news: r-datatable.com
+**********
+This installation of data.table has not detected OpenMP support. It should still work but in single-threaded mode.
+This is a Mac. Please read https://mac.r-project.org/openmp/. Please engage with Apple and ask them for support. Check r-datatable.com for updates, and our Mac instructions here: https://github.com/Rdatatable/data.table/wiki/Installation. After several years of many reports of installation problems on Mac, it&#39;s time to gingerly point out that there have been no similar problems on Windows or Linux.
+**********</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbClcblxuYGBgIn0= -->
-<pre class="r"><code>summary(model)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(dplyr)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHRvdGFsX2NvdW50cyB+IHRqc19sb2dvICsgc3VydmV5X2Jsb2NrLCBkYXRhID0gZGF0YSlcblxuUmVzaWR1YWxzOlxuICAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggXG4tMTYuODU1NCAtMTQuMTAzNyAgIDAuNTQyNiAgMTMuNjYyOCAgMTYuNDczMiBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAxNi40NTc0ICAgICAxLjcwNjggICA5LjY0MiAgIDwyZS0xNiAqKipcbnRqc19sb2dvICAgICAgIC0yLjU4NzMgICAgIDIuMTI2OCAgLTEuMjE2ICAgIDAuMjI1ICAgIFxuc3VydmV5X2Jsb2NrYiAgIDAuMzk4MCAgICAgMi4zNjYyICAgMC4xNjggICAgMC44NjcgICAgXG5zdXJ2ZXlfYmxvY2tjICAtMC4xMjAyICAgICAyLjM4NTAgIC0wLjA1MCAgICAwLjk2MCAgICBcbnN1cnZleV9ibG9ja2QgIC0wLjM0MzMgICAgIDIuMzg5MyAgLTAuMTQ0ICAgIDAuODg2ICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAxMi4zMyBvbiAyMTAgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjAwNzUyOCxcdEFkanVzdGVkIFItc3F1YXJlZDogIC0wLjAxMTM4IFxuRi1zdGF0aXN0aWM6IDAuMzk4MiBvbiA0IGFuZCAyMTAgREYsICBwLXZhbHVlOiAwLjgwOThcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRhdGEudGFibGXigJk6XG5cbiAgICBiZXR3ZWVuLCBmaXJzdCwgbGFzdFxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6c3RhdHPigJk6XG5cbiAgICBmaWx0ZXIsIGxhZ1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIGludGVyc2VjdCwgc2V0ZGlmZiwgc2V0ZXF1YWwsIHVuaW9uXG4ifQ== -->
 <pre><code>
-Call:
-lm(formula = total_counts ~ tjs_logo + survey_block, data = data)
+Attaching package: ‘dplyr’
 
-Residuals:
-     Min       1Q   Median       3Q      Max 
--16.8554 -14.1037   0.5426  13.6628  16.4732 
+The following objects are masked from ‘package:data.table’:
 
-Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)    16.4574     1.7068   9.642   &lt;2e-16 ***
-tjs_logo       -2.5873     2.1268  -1.216    0.225    
-survey_blockb   0.3980     2.3662   0.168    0.867    
-survey_blockc  -0.1202     2.3850  -0.050    0.960    
-survey_blockd  -0.3433     2.3893  -0.144    0.886    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    between, first, last
 
-Residual standard error: 12.33 on 210 degrees of freedom
-Multiple R-squared:  0.007528,  Adjusted R-squared:  -0.01138 
-F-statistic: 0.3982 on 4 and 210 DF,  p-value: 0.8098</code></pre>
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbDIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>summary(model2)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMoZGF0YSlcblxuYGBgIn0= -->
+<pre class="r"><code>names(data)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHRvdGFsX2NvdW50cyB+IHRqc19sb2dvICogdHJlYXRfaW5kICogc3VydmV5X2Jsb2NrLCBcbiAgICBkYXRhID0gZGF0YSlcblxuUmVzaWR1YWxzOlxuICAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggXG4tMTYuODAwMCAtMTUuMDEwNCAgIDAuOTE2NyAgMTMuMjAwMCAgMTUuNDA3NCBcblxuQ29lZmZpY2llbnRzOiAoNCBub3QgZGVmaW5lZCBiZWNhdXNlIG9mIHNpbmd1bGFyaXRpZXMpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgICAxNi42OTIzMSAgICAyLjQ1MTAwICAgNi44MTAgMS4wOGUtMTAgKioqXG50anNfbG9nbyAgICAgICAgICAgICAgICAgICAgICAgICAtNi42NTAwMCAgICA1LjIyODE2ICAtMS4yNzIgICAgMC4yMDUgICAgXG50cmVhdF9pbmQgICAgICAgICAgICAgICAgICAgICAgICAgMC43MDc2OSAgICAzLjcxNzEzICAgMC4xOTAgICAgMC44NDkgICAgXG5zdXJ2ZXlfYmxvY2tiICAgICAgICAgICAgICAgICAgICAtMC4wOTk3MiAgICAzLjQzMzk5ICAtMC4wMjkgICAgMC45NzcgICAgXG5zdXJ2ZXlfYmxvY2tjICAgICAgICAgICAgICAgICAgICAgMC4xMDc2OSAgICAzLjUwMDczICAgMC4wMzEgICAgMC45NzUgICAgXG5zdXJ2ZXlfYmxvY2tkICAgICAgICAgICAgICAgICAgICAtMC41NzIzMSAgICAzLjUwMDczICAtMC4xNjMgICAgMC44NzAgICAgXG50anNfbG9nbzp0cmVhdF9pbmQgICAgICAgICAgICAgICAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tiICAgICAgICAgICAgMy4wMDQxNyAgICA3LjA3ODk3ICAgMC40MjQgICAgMC42NzIgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tjICAgICAgICAgICAgNi4zMzg4OSAgICA3LjE4NTQyICAgMC44ODIgICAgMC4zNzkgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tkICAgICAgICAgICAgNi43OTU4MyAgICA3LjA3ODk3ICAgMC45NjAgICAgMC4zMzggICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYiAgICAgICAgICAgMC4yNjIyMiAgICA1LjQxODg1ICAgMC4wNDggICAgMC45NjEgICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYyAgICAgICAgICAtMi4zOTY1OCAgICA1LjM2MTE3ICAtMC40NDcgICAgMC42NTUgICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrZCAgICAgICAgICAtMS44OTAxOSAgICA1LjQ2MTM5ICAtMC4zNDYgICAgMC43MzAgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYiAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYyAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrZCAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDEyLjUgb24gMjAzIGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC4wMTM4NCxcdEFkanVzdGVkIFItc3F1YXJlZDogIC0wLjAzOTU5IFxuRi1zdGF0aXN0aWM6IDAuMjU5MSBvbiAxMSBhbmQgMjAzIERGLCAgcC12YWx1ZTogMC45OTIxXG4ifQ== -->
-<pre><code>
-Call:
-lm(formula = total_counts ~ tjs_logo * treat_ind * survey_block, 
-    data = data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--16.8000 -15.0104   0.9167  13.2000  15.4074 
-
-Coefficients: (4 not defined because of singularities)
-                                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)                      16.69231    2.45100   6.810 1.08e-10 ***
-tjs_logo                         -6.65000    5.22816  -1.272    0.205    
-treat_ind                         0.70769    3.71713   0.190    0.849    
-survey_blockb                    -0.09972    3.43399  -0.029    0.977    
-survey_blockc                     0.10769    3.50073   0.031    0.975    
-survey_blockd                    -0.57231    3.50073  -0.163    0.870    
-tjs_logo:treat_ind                     NA         NA      NA       NA    
-tjs_logo:survey_blockb            3.00417    7.07897   0.424    0.672    
-tjs_logo:survey_blockc            6.33889    7.18542   0.882    0.379    
-tjs_logo:survey_blockd            6.79583    7.07897   0.960    0.338    
-treat_ind:survey_blockb           0.26222    5.41885   0.048    0.961    
-treat_ind:survey_blockc          -2.39658    5.36117  -0.447    0.655    
-treat_ind:survey_blockd          -1.89019    5.46139  -0.346    0.730    
-tjs_logo:treat_ind:survey_blockb       NA         NA      NA       NA    
-tjs_logo:treat_ind:survey_blockc       NA         NA      NA       NA    
-tjs_logo:treat_ind:survey_blockd       NA         NA      NA       NA    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 12.5 on 203 degrees of freedom
-Multiple R-squared:  0.01384,   Adjusted R-squared:  -0.03959 
-F-statistic: 0.2591 on 11 and 203 DF,  p-value: 0.9921</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcInBob3RvX2Jsb2NrXCIgICAgIFwidG90YWxfY291bnRzXCIgICAgXCJwaG90b19pZFwiICAgICAgICBcInNtaWxlXCIgICAgICAgICAgIFwibG9nb1wiICAgICAgICAgICAgXCJ0cmVhdFwiICAgICAgICAgIFxuIFs3XSBcInRyZWF0X2luZFwiICAgICAgIFwidHJlYXRfd2l0aF9sb2dvXCIgXCJ0anNfbG9nb1wiICAgICAgICBcIm5pa2VfbG9nb1wiICAgICAgIFwibm9fbG9nb1wiICAgICAgICAgXCJzdXJ2ZXlfYmxvY2tcIiAgIFxuIn0= -->
+<pre><code> [1] &quot;photo_block&quot;     &quot;total_counts&quot;    &quot;photo_id&quot;        &quot;smile&quot;           &quot;logo&quot;            &quot;treat&quot;          
+ [7] &quot;treat_ind&quot;       &quot;treat_with_logo&quot; &quot;tjs_logo&quot;        &quot;nike_logo&quot;       &quot;no_logo&quot;         &quot;survey_block&quot;   </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3VtbWFyeShtb2RlbClcblxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+summary(model)
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoZGF0YS50YWJsZSkKbGlicmFyeShkcGx5cikKYGBgCiAKCmBgYHtyfQpkYXRhIDwtIGZyZWFkKCIuLi9kYXRhL3Byb2Nlc3NlZC9hbmFseXNpc190YWJsZS5jc3YiKQoKZGF0YVssIHRyZWF0X2luZCA6PSBpZmVsc2UodHJlYXQ9PSd0JywxLDApXQoKZGF0YVssIHRyZWF0X3dpdGhfbG9nbyA6PSBpZmVsc2UoKGxvZ28gIT0gJ25vbmUnICYgdHJlYXQgPT0gJ3QnKSwxICwwKV0KCmRhdGFbLCB0anNfbG9nbyA6PSBpZmVsc2UodGVzdCA9IGdyZXBsKHBhdHRlcm4gPSAidGpzIiwgZGF0YVssIGxvZ29dKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHllcyA9IDEsIG5vID0gMCldCgpkYXRhWywgbmlrZV9sb2dvIDo9IGlmZWxzZSh0ZXN0ID0gZ3JlcGwocGF0dGVybiA9ICJuaWtlIiwgZGF0YVssIGxvZ29dKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHllcyA9IDEsIG5vID0gMCldCgpkYXRhWywgbm9fbG9nbyA6PSBpZmVsc2UodGVzdCA9IGdyZXBsKHBhdHRlcm4gPSAibm9uZSIsIGRhdGFbLCBsb2dvXSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5ZXMgPSAxLCBubyA9IDApXQpkYXRhWywgc3VydmV5X2Jsb2NrIDo9IGdzdWIoIl4uKl8iLCAiIiwgZGF0YSRwaG90b19ibG9jayldCgpnc3ViKCJeLipfIiwgIiIsIHN0cmluZ190aGluZykKClZpZXcoZGF0YSkKYGBgCgpgYGB7cn0KbW9kZWwgPC0gbG0odG90YWxfY291bnRzIH4gdGpzX2xvZ28gKyBzdXJ2ZXlfYmxvY2ssIGRhdGEpCgpzdW1tYXJ5KG1vZGVsKQpgYGAKCgpgYGB7cn0KbW9kZWwyIDwtIGxtKHRvdGFsX2NvdW50cyB+IHRqc19sb2dvKnRyZWF0X2luZCpzdXJ2ZXlfYmxvY2ssIGRhdGEpCnN1bW1hcnkobW9kZWwyKQpgYGAKCgo=</div>
+&lt;!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHRvdGFsX2NvdW50cyB+IHRqc19sb2dvICsgc3VydmV5X2Jsb2NrLCBkYXRhID0gZGF0YSlcblxuUmVzaWR1YWxzOlxuICAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggXG4tMTYuODU1NCAtMTQuMTAzNyAgIDAuNTQyNiAgMTMuNjYyOCAgMTYuNDczMiBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAxNi40NTc0ICAgICAxLjcwNjggICA5LjY0MiAgIDwyZS0xNiAqKipcbnRqc19sb2dvICAgICAgIC0yLjU4NzMgICAgIDIuMTI2OCAgLTEuMjE2ICAgIDAuMjI1ICAgIFxuc3VydmV5X2Jsb2NrYiAgIDAuMzk4MCAgICAgMi4zNjYyICAgMC4xNjggICAgMC44NjcgICAgXG5zdXJ2ZXlfYmxvY2tjICAtMC4xMjAyICAgICAyLjM4NTAgIC0wLjA1MCAgICAwLjk2MCAgICBcbnN1cnZleV9ibG9ja2QgIC0wLjM0MzMgICAgIDIuMzg5MyAgLTAuMTQ0ICAgIDAuODg2ICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAxMi4zMyBvbiAyMTAgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjAwNzUyOCxcdEFkanVzdGVkIFItc3F1YXJlZDogIC0wLjAxMTM4IFxuRi1zdGF0aXN0aWM6IDAuMzk4MiBvbiA0IGFuZCAyMTAgREYsICBwLXZhbHVlOiAwLjgwOThcbiJ9 --&gt;
+</code></pre>
+<p>Call: lm(formula = total_counts ~ tjs_logo + survey_block, data = data)</p>
+<p>Residuals: Min 1Q Median 3Q Max -16.8554 -14.1037 0.5426 13.6628 16.4732</p>
+<p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br />
+(Intercept) 16.4574 1.7068 9.642 &lt;2e-16 *** tjs_logo -2.5873 2.1268 -1.216 0.225<br />
+survey_blockb 0.3980 2.3662 0.168 0.867<br />
+survey_blockc -0.1202 2.3850 -0.050 0.960<br />
+survey_blockd -0.3433 2.3893 -0.144 0.886<br />
+— Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
+<p>Residual standard error: 12.33 on 210 degrees of freedom Multiple R-squared: 0.007528, Adjusted R-squared: -0.01138 F-statistic: 0.3982 on 4 and 210 DF, p-value: 0.8098</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3VtbWFyeShtb2RlbDIpXG5cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+summary(model2)
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHRvdGFsX2NvdW50cyB+IHRqc19sb2dvICogdHJlYXRfaW5kICogc3VydmV5X2Jsb2NrLCBcbiAgICBkYXRhID0gZGF0YSlcblxuUmVzaWR1YWxzOlxuICAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggXG4tMTYuODAwMCAtMTUuMDEwNCAgIDAuOTE2NyAgMTMuMjAwMCAgMTUuNDA3NCBcblxuQ29lZmZpY2llbnRzOiAoNCBub3QgZGVmaW5lZCBiZWNhdXNlIG9mIHNpbmd1bGFyaXRpZXMpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgICAxNi42OTIzMSAgICAyLjQ1MTAwICAgNi44MTAgMS4wOGUtMTAgKioqXG50anNfbG9nbyAgICAgICAgICAgICAgICAgICAgICAgICAtNi42NTAwMCAgICA1LjIyODE2ICAtMS4yNzIgICAgMC4yMDUgICAgXG50cmVhdF9pbmQgICAgICAgICAgICAgICAgICAgICAgICAgMC43MDc2OSAgICAzLjcxNzEzICAgMC4xOTAgICAgMC44NDkgICAgXG5zdXJ2ZXlfYmxvY2tiICAgICAgICAgICAgICAgICAgICAtMC4wOTk3MiAgICAzLjQzMzk5ICAtMC4wMjkgICAgMC45NzcgICAgXG5zdXJ2ZXlfYmxvY2tjICAgICAgICAgICAgICAgICAgICAgMC4xMDc2OSAgICAzLjUwMDczICAgMC4wMzEgICAgMC45NzUgICAgXG5zdXJ2ZXlfYmxvY2tkICAgICAgICAgICAgICAgICAgICAtMC41NzIzMSAgICAzLjUwMDczICAtMC4xNjMgICAgMC44NzAgICAgXG50anNfbG9nbzp0cmVhdF9pbmQgICAgICAgICAgICAgICAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tiICAgICAgICAgICAgMy4wMDQxNyAgICA3LjA3ODk3ICAgMC40MjQgICAgMC42NzIgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tjICAgICAgICAgICAgNi4zMzg4OSAgICA3LjE4NTQyICAgMC44ODIgICAgMC4zNzkgICAgXG50anNfbG9nbzpzdXJ2ZXlfYmxvY2tkICAgICAgICAgICAgNi43OTU4MyAgICA3LjA3ODk3ICAgMC45NjAgICAgMC4zMzggICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYiAgICAgICAgICAgMC4yNjIyMiAgICA1LjQxODg1ICAgMC4wNDggICAgMC45NjEgICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYyAgICAgICAgICAtMi4zOTY1OCAgICA1LjM2MTE3ICAtMC40NDcgICAgMC42NTUgICAgXG50cmVhdF9pbmQ6c3VydmV5X2Jsb2NrZCAgICAgICAgICAtMS44OTAxOSAgICA1LjQ2MTM5ICAtMC4zNDYgICAgMC43MzAgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYiAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrYyAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG50anNfbG9nbzp0cmVhdF9pbmQ6c3VydmV5X2Jsb2NrZCAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDEyLjUgb24gMjAzIGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC4wMTM4NCxcdEFkanVzdGVkIFItc3F1YXJlZDogIC0wLjAzOTU5IFxuRi1zdGF0aXN0aWM6IDAuMjU5MSBvbiAxMSBhbmQgMjAzIERGLCAgcC12YWx1ZTogMC45OTIxXG4ifQ== --&gt;
+</code></pre>
+<p>Call: lm(formula = total_counts ~ tjs_logo * treat_ind * survey_block, data = data)</p>
+<p>Residuals: Min 1Q Median 3Q Max -16.8000 -15.0104 0.9167 13.2000 15.4074</p>
+<p>Coefficients: (4 not defined because of singularities) Estimate Std. Error t value Pr(&gt;|t|)<br />
+(Intercept) 16.69231 2.45100 6.810 1.08e-10 *** tjs_logo -6.65000 5.22816 -1.272 0.205<br />
+treat_ind 0.70769 3.71713 0.190 0.849<br />
+survey_blockb -0.09972 3.43399 -0.029 0.977<br />
+survey_blockc 0.10769 3.50073 0.031 0.975<br />
+survey_blockd -0.57231 3.50073 -0.163 0.870<br />
+tjs_logo:treat_ind NA NA NA NA<br />
+tjs_logo:survey_blockb 3.00417 7.07897 0.424 0.672<br />
+tjs_logo:survey_blockc 6.33889 7.18542 0.882 0.379<br />
+tjs_logo:survey_blockd 6.79583 7.07897 0.960 0.338<br />
+treat_ind:survey_blockb 0.26222 5.41885 0.048 0.961<br />
+treat_ind:survey_blockc -2.39658 5.36117 -0.447 0.655<br />
+treat_ind:survey_blockd -1.89019 5.46139 -0.346 0.730<br />
+tjs_logo:treat_ind:survey_blockb NA NA NA NA<br />
+tjs_logo:treat_ind:survey_blockc NA NA NA NA<br />
+tjs_logo:treat_ind:survey_blockd NA NA NA NA<br />
+— Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
+<p>Residual standard error: 12.5 on 203 degrees of freedom Multiple R-squared: 0.01384, Adjusted R-squared: -0.03959 F-statistic: 0.2591 on 11 and 203 DF, p-value: 0.9921 ```</p>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjQxLCJuY29sIjo2fSwicmRmIjoiSDRzSUFBQUFBQUFBQSsxWVRXL2FRQkJkSjBBS1RWS2dpVVNVaXVTYUE2aGdJc3k5Nmcrb1dpazN5eXhPNDhiWXlEYjl1UFZmOXQrRXJvMTN2Vjd2N0ZJYTlWUkxodDE1YjJiZXpINUU0Y083TzdOMTEwSUlIYUlhZVEvclpJanFuejYrSDFnSTFRN0l4Q0JBTS8zK1RraXZ5YUJCM2paNWIzTGdZdlRXdnJmanBlZTdkaEFHcm8zdHVSL2lSOXZSRWVZNTRjMW9aQzlUU01MQkxFaktrUkFXTE1pWVpKRUhLWlNNMVVwU2dqUkxFY0hVUlFBSW1PazB3V0tMV2laZ0xaampRSEdjSFRoRm5GdHQzMVFjUG80K2w2WFZmSkZ4bEIyZXFRbTlrWHFKZXNCTzB1RjBkUzdoamNaUmRIVXFLRmhQb1lsNnBxWVdBR2YrRTNtdldDSDZEZFNiYUNRQU9FdWgzMXNLQ2l0a3FsNzB5eWxZQ0tOWTJvT2dvTEJ5TFhWSGU4RDJadTJjUWY3bGE3ZkwzYXBsa1ZXRWFqc3ZYN1RseEYzdWhpMUxQaTlmcldLMk1aQ3R5MTJtb284SitvZ0laaUxNcXZaQzRhU3FFSE5neGROUmdZWG5MVnk0Rk9ROUZXRXRXRkNYdS8vRTNzd0FwRE1DMnRrUmx4UUVhQ2ZQSkV2TllhQnNHWVlWR0kzWk1TR0ZJc0E4SmtLeFRKNWlKVHNUS0kwSXNHaUsxWlZoVE40VVdJdXphVlVld3l4NG44a3dwdDRDZXRFUk54RnJ4S3ppZ2RCcGRxLzhmNTdyYWFQaW5qYm9PaHAwMFF5NkZzWUM1dXppaFN0a2hhVUt6WGNZTEdDcFZUMEtMd3h6RkhFVTNaQzVJM1NDaW8xOFRkNCtlYSs0T1c5SGttODZ2a0xsNXpxM3FleDlMa2Rmd2hHeE5pbzJTVDA3a2JMSkMzcnkveGpjY1NMRytOZnpmVFEvYXdGN3B0bGYwRitwMTZvdC85ZmVqTUp2dzhCWnVqSGFubzZEbitSanM5bjhFb2gxN0R0eG5HOUxhbXd0bk1RWjNrZkVYNlRUbUNtOWtSdGZyaDdDSk56K1hjbE5SMTlDTDdBOWVscWJTZVE2aWUwRjFIQWNyNk92N28rU3ozRVNKbzV2NDNBZEpMRlFISG9TaEJ5RnE4UWpMU0tWcFQ5TzFJVUtqRWd3dkZvSHFmVEZBRCtzZzhmQktLMHlnN2ZQU1Q2KzRjYU5iY3JhSmc5VnowTTEzT0N6RjdEMis4N2M5ZlBKS1dsNzFxSGhLdktDaExhVFdPTmhWaDIxNE5DbmxxdzI5UFFiWjJ1STdaTVJBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["photo_block"],"name":[1],"type":["chr"],"align":["left"]},{"label":["join_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["treat_ind"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["survey_block"],"name":[4],"type":["chr"],"align":["left"]},{"label":["total_counts"],"name":[5],"type":["int"],"align":["right"]},{"label":["smile"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"10_f_smile_none_c_block_a","2":"10_f_smile_block_a","3":"0","4":"a","5":"0","6":"smile"},{"1":"10_f_smile_none_c_block_b","2":"10_f_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"11_m_nonsmile_none_c_block_c","2":"11_m_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"11_m_smile_none_c_block_d","2":"11_m_smile_block_d","3":"0","4":"d","5":"31","6":"smile"},{"1":"12_f_nonsmile_none_c_block_a","2":"12_f_nonsmile_block_a","3":"0","4":"a","5":"0","6":"nonsmile"},{"1":"12_f_smile_none_c_block_b","2":"12_f_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"12_m_smile_none_c_block_a","2":"12_m_smile_block_a","3":"0","4":"a","5":"0","6":"smile"},{"1":"13_f_smile_none_c_block_b","2":"13_f_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"13_f_smile_none_c_block_c","2":"13_f_smile_block_c","3":"0","4":"c","5":"30","6":"smile"},{"1":"13_m_nonsmile_none_c_block_d","2":"13_m_nonsmile_block_d","3":"0","4":"d","5":"0","6":"nonsmile"},{"1":"14_f_nonsmile_none_c_block_c","2":"14_f_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"14_m_nonsmile_none_c_block_a","2":"14_m_nonsmile_block_a","3":"0","4":"a","5":"0","6":"nonsmile"},{"1":"14_m_nonsmile_none_c_block_c","2":"14_m_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"15_f_nonsmile_none_c_block_a","2":"15_f_nonsmile_block_a","3":"0","4":"a","5":"0","6":"nonsmile"},{"1":"15_f_nonsmile_none_c_block_c","2":"15_f_nonsmile_block_c","3":"0","4":"c","5":"0","6":"nonsmile"},{"1":"15_m_nonsmile_none_c_block_c","2":"15_m_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"18_m_nonsmile_none_c_block_a","2":"18_m_nonsmile_block_a","3":"0","4":"a","5":"31","6":"nonsmile"},{"1":"18_m_smile_none_c_block_b","2":"18_m_smile_block_b","3":"0","4":"b","5":"0","6":"smile"},{"1":"19_m_smile_none_c_block_b","2":"19_m_smile_block_b","3":"0","4":"b","5":"0","6":"smile"},{"1":"1_f_smile_none_c_block_b","2":"1_f_smile_block_b","3":"0","4":"b","5":"0","6":"smile"},{"1":"1_m_smile_none_c_block_b","2":"1_m_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"1_m_smile_none_c_block_d","2":"1_m_smile_block_d","3":"0","4":"d","5":"31","6":"smile"},{"1":"2_f_nonsmile_none_c_block_d","2":"2_f_nonsmile_block_d","3":"0","4":"d","5":"31","6":"nonsmile"},{"1":"2_m_nonsmile_none_c_block_a","2":"2_m_nonsmile_block_a","3":"0","4":"a","5":"0","6":"nonsmile"},{"1":"2_m_nonsmile_none_c_block_c","2":"2_m_nonsmile_block_c","3":"0","4":"c","5":"0","6":"nonsmile"},{"1":"2_m_nonsmile_none_c_block_d","2":"2_m_nonsmile_block_d","3":"0","4":"d","5":"0","6":"nonsmile"},{"1":"3_m_smile_none_c_block_b","2":"3_m_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"3_m_smile_none_c_block_d","2":"3_m_smile_block_d","3":"0","4":"d","5":"31","6":"smile"},{"1":"4_f_smile_none_c_block_d","2":"4_f_smile_block_d","3":"0","4":"d","5":"31","6":"smile"},{"1":"4_m_nonsmile_none_c_block_c","2":"4_m_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"4_m_smile_none_c_block_b","2":"4_m_smile_block_b","3":"0","4":"b","5":"32","6":"smile"},{"1":"4_m_smile_none_c_block_d","2":"4_m_smile_block_d","3":"0","4":"d","5":"0","6":"smile"},{"1":"5_f_nonsmile_none_c_block_c","2":"5_f_nonsmile_block_c","3":"0","4":"c","5":"30","6":"nonsmile"},{"1":"5_f_nonsmile_none_c_block_d","2":"5_f_nonsmile_block_d","3":"0","4":"d","5":"0","6":"nonsmile"},{"1":"7_f_smile_none_c_block_b","2":"7_f_smile_block_b","3":"0","4":"b","5":"0","6":"smile"},{"1":"7_m_nonsmile_none_c_block_b","2":"7_m_nonsmile_block_b","3":"0","4":"b","5":"32","6":"nonsmile"},{"1":"8_f_nonsmile_none_c_block_a","2":"8_f_nonsmile_block_a","3":"0","4":"a","5":"31","6":"nonsmile"},{"1":"8_f_nonsmile_none_c_block_b","2":"8_f_nonsmile_block_b","3":"0","4":"b","5":"32","6":"nonsmile"},{"1":"8_f_smile_none_c_block_d","2":"8_f_smile_block_d","3":"0","4":"d","5":"0","6":"smile"},{"1":"8_m_smile_none_c_block_c","2":"8_m_smile_block_c","3":"0","4":"c","5":"30","6":"smile"},{"1":"9_f_smile_none_c_block_d","2":"9_f_smile_block_d","3":"0","4":"d","5":"0","6":"smile"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[41]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoZGF0YS50YWJsZSkKbGlicmFyeShkcGx5cikKYGBgCiAKCmBgYHtyfQpkYXRhIDwtIGZyZWFkKCIuLi9kYXRhL3Byb2Nlc3NlZC9hbmFseXNpc190YWJsZS5jc3YiKQoKZGF0YVssIHRyZWF0X2luZCA6PSBpZmVsc2UodHJlYXQ9PSd0JywxLDApXQoKZGF0YVssIHRyZWF0X3dpdGhfbG9nbyA6PSBpZmVsc2UoKGxvZ28gIT0gJ25vbmUnICYgdHJlYXQgPT0gJ3QnKSwxICwwKV0KCmRhdGFbLCB0anNfbG9nbyA6PSBpZmVsc2UodGVzdCA9IGdyZXBsKHBhdHRlcm4gPSAidGpzIiwgZGF0YVssIGxvZ29dKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHllcyA9IDEsIG5vID0gMCldCgpkYXRhWywgbmlrZV9sb2dvIDo9IGlmZWxzZSh0ZXN0ID0gZ3JlcGwocGF0dGVybiA9ICJuaWtlIiwgZGF0YVssIGxvZ29dKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHllcyA9IDEsIG5vID0gMCldCgpkYXRhWywgbm9fbG9nbyA6PSBpZmVsc2UodGVzdCA9IGdyZXBsKHBhdHRlcm4gPSAibm9uZSIsIGRhdGFbLCBsb2dvXSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5ZXMgPSAxLCBubyA9IDApXQpkYXRhWywgc3VydmV5X2Jsb2NrIDo9IGdzdWIoIl4uKl8iLCAiIiwgZGF0YSRwaG90b19ibG9jayldCgpuYW1lcyhkYXRhKQpgYGAKCmBgYHtyfQptb2RlbF8xIDwtIGxtKHRvdGFsX2NvdW50cyB+IHRqc19sb2dvICsgc3VydmV5X2Jsb2NrLCBkYXRhKQoKYGBgCgoKYGBge3J9Cm1vZGVsMiA8LSBsbSh0b3RhbF9jb3VudHMgfiB0anNfbG9nbyp0cmVhdF9pbmQqc3VydmV5X2Jsb2NrLCBkYXRhKQpzdW1tYXJ5KG1vZGVsMikKYGBgCgoKYGBge3J9CmludGVyaW0gPC0gZGF0YVtsb2dvICE9ICJuaWtlIl0KIyBWaWV3KGludGVyaW0pCnRqc19vbmx5IDwtIGRhdGFbbG9nbyA9PSAidGpzIl0KVmlldyh0anNfb25seSkKCnBob3RvX25hbWVfc3BsaXQgPC0gcmVhZC50YWJsZSh0ZXh0ID0gaW50ZXJpbVsgLCBwaG90b19ibG9ja10sIHNlcCA9ICJfIiwgYXMuaXMgPSBUUlVFLCBmaWxsID0gVFJVRSkKaW50ZXJpbVssIGpvaW5faWQgOj0gcGFzdGUocGhvdG9fbmFtZV9zcGxpdCRWMSwgcGhvdG9fbmFtZV9zcGxpdCRWMiwgcGhvdG9fbmFtZV9zcGxpdCRWMywgcGhvdG9fbmFtZV9zcGxpdCRWNiwgcGhvdG9fbmFtZV9zcGxpdCRWNywgc2VwPSJfIildCgojIFZpZXcoaW50ZXJpbSkKdGpzX29ubHkgPC0gaW50ZXJpbVtsb2dvPT0idGpzIl0KdGpzX29ubHkgPC0gdGpzX29ubHlbICwgYygicGhvdG9fYmxvY2siLCAiam9pbl9pZCIsICJ0cmVhdF9pbmQiLCAic3VydmV5X2Jsb2NrIiwgInRvdGFsX2NvdW50cyIsICJzbWlsZSIpXQpyb3dzX3RvX2tlZXAgPC0gdGpzX29ubHlbLCBqb2luX2lkXQpub25lX2Nfb25seSA8LSBpbnRlcmltW2xvZ289PSJub25lIiAmIHRyZWF0X2luZDwxXQpub25lX2Nfb25seSA8LSBub25lX2Nfb25seVsgLCBjKCJwaG90b19ibG9jayIsICJqb2luX2lkIiwgInRyZWF0X2luZCIsICJzdXJ2ZXlfYmxvY2siLCAidG90YWxfY291bnRzIiwgInNtaWxlIildCm5vbmVfY19tYXRjaGVkIDwtIHN1YnNldChub25lX2Nfb25seSwgam9pbl9pZCAlaW4lIHJvd3NfdG9fa2VlcCkKCgoKIyBub25lX2Nfcm93cyA8LSBub25lX2NfbWF0Y2hlZFssIGpvaW5faWRdCiMgdGpzX2lzc3VlIDwtIHN1YnNldCh0anNfb25seSwgIShqb2luX2lkICVpbiUgbm9uZV9jX3Jvd3MpKQoKIyBWaWV3KG5vbmVfY19tYXRjaGVkKQp0anNfdnNfY29udHJvbCA8LSByYmluZCh0anNfb25seSwgbm9uZV9jX29ubHkpCgoKCmBgYAoK</div>
 
 
 
