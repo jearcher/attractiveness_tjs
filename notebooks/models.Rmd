@@ -3,13 +3,17 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-```{r}
+```{r, include=FALSE}
 library(data.table)
 library(dplyr)
+library(lmtest)
+library(sandwich)
+library(stargazer)
+library(pwr)
 ```
  
 
-```{r}
+```{r data}
 data <- fread("../data/processed/analysis_table.csv")
 
 data[, treat_ind := ifelse(treat=='t',1,0)]
@@ -31,13 +35,45 @@ names(data)
 
 ```{r}
 model_1 <- lm(total_counts ~ tjs_logo + survey_block, data)
+=======
+View(data)
+```
+
+```{r histograms}
+hist(data[data$tjs_logo==1]$total_counts)
+hist(data[data$treat_ind==0]$total_counts)
+hist(data[data$nike_logo==1]$total_counts)
+
+data[smile == 'smile', hist(total_counts)]
+data[smile == 'nonsmile', hist(total_counts)]
+```
+
+```{r baseline}
+model <- lm(total_counts ~ tjs_logo + survey_block, data)
+
 
 ```
 
 
-```{r}
-model2 <- lm(total_counts ~ tjs_logo*treat_ind*survey_block, data)
+```{r blocks}
+#model2 <- lm(total_counts ~ tjs_logo*treat_ind*survey_block, data)
+#summary(model2)
+model2 <- lm(total_counts ~ tjs_logo + tjs_logo*survey_block, data)
 summary(model2)
+```
+
+```{r placebo design}
+cace_subset_model <- data[nike_logo ==  0, lm(total_counts ~ tjs_logo)]
+summary(cace_subset_model)
+```
+
+
+```{r smile model}
+smile_model <- data[, lm(total_counts ~ tjs_logo + smile)]
+summary(smile_model)
+
+#power calculation
+pwr.f2.test(u = 3, v = 211, f2 = 0.01669)
 ```
 
 
@@ -70,3 +106,13 @@ tjs_vs_control <- rbind(tjs_only, none_c_only)
 
 ```
 
+```{r t-tests}
+tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
+tjs_vs_nike
+tjs_vs_control <- data[, t.test(data[tjs_logo == 1, total_counts], data[tjs_logo == 0, total_counts], paired = T)] #attempt to make these paired later
+tjs_vs_control
+nike_vs_control <- data[, t.test(data[nike_logo == 1, total_counts], data[nike_logo == 0, total_counts])]
+nike_vs_control
+smile_vs_nonsmile <- data[, t.test(data[smile == 'smile', total_counts], data[smile == 'nonsmile', total_counts])]
+smile_vs_nonsmile
+```
