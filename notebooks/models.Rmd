@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?"
 author: "Josh Archer, Hannah Choi, Josh Lin, Pauline Yue"
 output: pdf_document
 ---
@@ -12,7 +12,6 @@ library(sandwich)
 library(stargazer)
 library(pwr)
 ```
-# All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?
 
 ## Abstract
 
@@ -95,10 +94,14 @@ anova(model_1, model_4, test = 'F')
 
 ```{r}
 stargazer(model_1, model_2, model_3, model_4, type = 'text', 
-          se = list(robust_se(model_1),robust_se(model_2), robust_se(model_3), robust_se(model_4)))
+          se = list(robust_se(model_1),robust_se(model_2), robust_se(model_3), robust_se(model_4)),
+          column.labels = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
+          dep.var.labels = c('Total Number of Times Chosen'),
+          covariate.labels = c("Trader Joe's Logo", 'Survey Block B', 
+                               'Survey Block C', 'Survey Block D', "No Smile",
+                              'Smile', 'Baseline'),
+          title = "Table 1: Baseline Models")
 ```
-
-(Insert stargazer here for initial model creation, 1-4)
 
 ```{r clean for tj vs control}
 # Remove nike logo photos and look for just tjs photos
@@ -154,7 +157,13 @@ anova(model_5, model_gen_smile, test = 'F')
 ```{r tjs stargazer}
 stargazer(model_5, model_6, model_7, model_gen_smile, type = 'text', 
           se = list(robust_se(model_5), robust_se(model_6), robust_se(model_7), 
-                    robust_se(model_gen_smile)))
+                    robust_se(model_gen_smile)),
+          column.labels = c('Model 5', 'Model 6', 'Model 7', 'Saturated Model'),
+          dep.var.labels = c('Total Number of Times Chosen'),
+          covariate.labels = c("Contains Logo", 'Smile', 
+                               'Contains Logo*Smile', 'Male Photo Subject', "Contains Logo*Male",
+                              'Smile*Male', 'Baseline'),
+          title = "Table 2: Trader Joe's Only Models")
 ```
 
 
@@ -204,7 +213,13 @@ anova(model_8, model_nike_gen_smile, test = 'F')
 ```{r nike stargazer}
 stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text', 
           se = list(robust_se(model_8), robust_se(model_9), robust_se(model_10), 
-                    robust_se(model_nike_gen_smile)))
+                    robust_se(model_nike_gen_smile)),
+          column.labels = c('Model 8', 'Model 9', 'Model 10', 'Saturated Model'),
+          dep.var.labels = c('Total Number of Times Chosen'),
+          covariate.labels = c("Contains Logo", 'No Smile', 
+                               'Smile', 'Male Photo Subject', "Contains Logo*Male",
+                               'Baseline'),
+          title = "Table 3: Nike Only Models")
 ```
 
 
