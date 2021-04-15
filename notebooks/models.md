@@ -38,7 +38,7 @@ hist(data[data$nike_logo==1]$total_counts)
 
 ``` r
 # Why does this print density, etc text. Maybe split into different chunks? Maybe write it similar to above?
-data[smile == 'smile', hist(total_counts)]
+data[smile_ind == 0, hist(total_counts)]
 ```
 
 ![](models_files/figure-markdown_github/histograms-4.png)
@@ -47,10 +47,10 @@ data[smile == 'smile', hist(total_counts)]
     ## [1]  0  5 10 15 20 25 30 35
     ## 
     ## $counts
-    ## [1] 37 10  7 16 14 11 26
+    ## [1] 32 13 13  6  6 17 16
     ## 
     ## $density
-    ## [1] 0.06115702 0.01652893 0.01157025 0.02644628 0.02314050 0.01818182 0.04297521
+    ## [1] 0.06213592 0.02524272 0.02524272 0.01165049 0.01165049 0.03300971 0.03106796
     ## 
     ## $mids
     ## [1]  2.5  7.5 12.5 17.5 22.5 27.5 32.5
@@ -65,7 +65,7 @@ data[smile == 'smile', hist(total_counts)]
     ## [1] "histogram"
 
 ``` r
-data[smile == 'nonsmile', hist(total_counts)]
+data[smile_ind == 1, hist(total_counts)]
 ```
 
 ![](models_files/figure-markdown_github/histograms-5.png)
@@ -74,10 +74,10 @@ data[smile == 'nonsmile', hist(total_counts)]
     ## [1]  0  5 10 15 20 25 30 35
     ## 
     ## $counts
-    ## [1] 32 13 13  6  6 16 15
+    ## [1] 37 10  7 16 14 11 26
     ## 
     ## $density
-    ## [1] 0.06336634 0.02574257 0.02574257 0.01188119 0.01188119 0.03168317 0.02970297
+    ## [1] 0.06115702 0.01652893 0.01157025 0.02644628 0.02314050 0.01818182 0.04297521
     ## 
     ## $mids
     ## [1]  2.5  7.5 12.5 17.5 22.5 27.5 32.5
@@ -155,18 +155,17 @@ coeftest(model_3, vcovHC(model_3))
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
-model_4 <- data[, lm(total_counts ~ tjs_logo + smile)]
+model_4 <- data[, lm(total_counts ~ tjs_logo + smile_ind)]
 coeftest(model_4, vcovHC(model_4))
 ```
 
     ## 
     ## t test of coefficients:
     ## 
-    ##               Estimate Std. Error t value  Pr(>|t|)    
-    ## (Intercept)    28.5000     3.5355  8.0610 4.806e-14 ***
-    ## tjs_logo       -1.7760     1.5244 -1.1650 0.2452661    
-    ## smilenonsmile -13.4255     3.7865 -3.5456 0.0004785 ***
-    ## smilesmile    -12.3589     3.7523 -3.2937 0.0011521 ** 
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) 15.36483    1.34261 11.4440   <2e-16 ***
+    ## tjs_logo    -1.92886    1.51987 -1.2691   0.2057    
+    ## smile_ind    0.80406    1.67481  0.4801   0.6316    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -177,10 +176,10 @@ anova(model_1, model_4, test = 'F')
     ## Analysis of Variance Table
     ## 
     ## Model 1: total_counts ~ tjs_logo
-    ## Model 2: total_counts ~ tjs_logo + smile
+    ## Model 2: total_counts ~ tjs_logo + smile_ind
     ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
     ## 1    222 34226                           
-    ## 2    220 33837  2    388.66 1.2635 0.2847
+    ## 2    221 34190  1    35.962 0.2325 0.6302
 
 ``` r
 stargazer(model_1, model_2, model_3, model_4, type = 'text', 
@@ -188,7 +187,7 @@ stargazer(model_1, model_2, model_3, model_4, type = 'text',
           column.labels = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
           dep.var.labels = c('Total Number of Times Chosen'),
           covariate.labels = c("Trader Joe's Logo", 'Survey Block B', 
-                               'Survey Block C', 'Survey Block D', "No Smile",
+                               'Survey Block C', 'Survey Block D',
                               'Smile', 'Baseline'),
           title = "Table 1: Baseline Models")
 ```
@@ -202,8 +201,8 @@ stargazer(model_1, model_2, model_3, model_4, type = 'text',
     ##                           Model 1             Model 2             Model 3             Model 4      
     ##                             (1)                 (2)                 (3)                 (4)        
     ## ---------------------------------------------------------------------------------------------------
-    ## Trader Joe's Logo         -1.945              -1.975              -1.660              -1.776       
-    ##                           (1.512)             (1.547)             (1.648)             (1.524)      
+    ## Trader Joe's Logo         -1.945              -1.975              -1.660              -1.929       
+    ##                           (1.512)             (1.547)             (1.648)             (1.520)      
     ##                                                                                                    
     ## Survey Block B                                 0.641                                               
     ##                                               (2.356)                                              
@@ -214,21 +213,18 @@ stargazer(model_1, model_2, model_3, model_4, type = 'text',
     ## Survey Block D                                -0.109                                               
     ##                                               (2.329)                                              
     ##                                                                                                    
-    ## No Smile                                                                            -13.426***     
-    ##                                                                                       (3.787)      
+    ## Smile                                                                                  0.804       
+    ##                                                                                       (1.675)      
     ##                                                                                                    
-    ## Smile                                                                               -12.359***     
-    ##                                                                                       (3.752)      
-    ##                                                                                                    
-    ## Baseline                 15.802***           15.782***           15.517***           28.500***     
-    ##                           (0.989)             (1.682)             (1.185)             (3.536)      
+    ## Baseline                 15.802***           15.782***           15.517***           15.365***     
+    ##                           (0.989)             (1.682)             (1.185)             (1.343)      
     ##                                                                                                    
     ## ---------------------------------------------------------------------------------------------------
     ## Observations                224                 224                 185                 224        
-    ## R2                         0.004               0.005               0.003               0.015       
-    ## Adjusted R2               -0.001              -0.013              -0.003               0.002       
-    ## Residual Std. Error  12.417 (df = 222)   12.495 (df = 219)   12.916 (df = 183)   12.402 (df = 220) 
-    ## F Statistic         0.837 (df = 1; 222) 0.261 (df = 4; 219) 0.536 (df = 1; 183) 1.122 (df = 3; 220)
+    ## R2                         0.004               0.005               0.003               0.005       
+    ## Adjusted R2               -0.001              -0.013              -0.003              -0.004       
+    ## Residual Std. Error  12.417 (df = 222)   12.495 (df = 219)   12.916 (df = 183)   12.438 (df = 221) 
+    ## F Statistic         0.837 (df = 1; 222) 0.261 (df = 4; 219) 0.536 (df = 1; 183) 0.533 (df = 2; 221)
     ## ===================================================================================================
     ## Note:                                                                   *p<0.1; **p<0.05; ***p<0.01
 
@@ -244,10 +240,10 @@ interim[, gender := photo_name_split$V2]
 
 ## Subset needed columns and match control photos to tjs photos (not including photos that were blank in both control and treatment)
 tjs_only <- interim[logo=="tjs"]
-tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 rows_to_keep <- tjs_only[, join_id]
 none_c_only <- interim[logo=="none" & treat_ind<1]
-none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep)
 
 # none_c_rows <- none_c_matched[, join_id]
@@ -274,18 +270,18 @@ coeftest(model_5, vcovHC(model_5))
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ``` r
-model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile)]
+model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind)]
 coeftest(model_6, vcovHC(model_6))
 ```
 
     ## 
     ## t test of coefficients:
     ## 
-    ##                      Estimate Std. Error t value  Pr(>|t|)    
-    ## (Intercept)           16.8500     3.5900  4.6936 1.094e-05 ***
-    ## treat_ind             -2.8500     4.0518 -0.7034    0.4839    
-    ## smilesmile             1.6500     4.9723  0.3318    0.7409    
-    ## treat_ind:smilesmile  -1.9227     5.5094 -0.3490    0.7280    
+    ##                     Estimate Std. Error t value  Pr(>|t|)    
+    ## (Intercept)          16.8500     3.5900  4.6936 1.094e-05 ***
+    ## treat_ind            -2.8500     4.0518 -0.7034    0.4839    
+    ## smile_ind             1.6500     4.9723  0.3318    0.7409    
+    ## treat_ind:smile_ind  -1.9227     5.5094 -0.3490    0.7280    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -296,7 +292,7 @@ anova(model_5, model_6, test = 'F')
     ## Analysis of Variance Table
     ## 
     ## Model 1: total_counts ~ treat_ind
-    ## Model 2: total_counts ~ treat_ind + smile + treat_ind * smile
+    ## Model 2: total_counts ~ treat_ind + smile_ind + treat_ind * smile_ind
     ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
     ## 1     82 12102                           
     ## 2     80 12072  2    29.301 0.0971 0.9076
@@ -330,22 +326,22 @@ anova(model_5, model_7, test = 'F')
     ## 2     80 11976  2    125.68 0.4198 0.6586
 
 ``` r
-model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile
-                                       + gender + treat_ind*gender + smile*gender)]
+model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind
+                                       + gender + treat_ind*gender + smile_ind*gender)]
 coeftest(model_gen_smile, vcovHC(model_gen_smile))
 ```
 
     ## 
     ## t test of coefficients:
     ## 
-    ##                      Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)           18.1404     5.0406  3.5988 0.000563 ***
-    ## treat_ind             -3.9474     5.2947 -0.7455 0.458219    
-    ## smilesmile            -1.8915     6.0410 -0.3131 0.755039    
-    ## genderm               -2.3461     5.9870 -0.3919 0.696243    
-    ## treat_ind:smilesmile  -1.8230     5.6490 -0.3227 0.747793    
-    ## treat_ind:genderm      1.9952     5.6430  0.3536 0.724622    
-    ## smilesmile:genderm     6.8485     5.6725  1.2073 0.231006    
+    ##                     Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)          18.1404     5.0406  3.5988 0.000563 ***
+    ## treat_ind            -3.9474     5.2947 -0.7455 0.458219    
+    ## smile_ind            -1.8915     6.0410 -0.3131 0.755039    
+    ## genderm              -2.3461     5.9870 -0.3919 0.696243    
+    ## treat_ind:smile_ind  -1.8230     5.6490 -0.3227 0.747793    
+    ## treat_ind:genderm     1.9952     5.6430  0.3536 0.724622    
+    ## smile_ind:genderm     6.8485     5.6725  1.2073 0.231006    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -356,8 +352,8 @@ anova(model_5, model_gen_smile, test = 'F')
     ## Analysis of Variance Table
     ## 
     ## Model 1: total_counts ~ treat_ind
-    ## Model 2: total_counts ~ treat_ind + smile + treat_ind * smile + gender + 
-    ##     treat_ind * gender + smile * gender
+    ## Model 2: total_counts ~ treat_ind + smile_ind + treat_ind * smile_ind + 
+    ##     gender + treat_ind * gender + smile_ind * gender
     ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
     ## 1     82 12102                           
     ## 2     77 11701  5    400.85 0.5276 0.7547
@@ -421,7 +417,7 @@ interim[, gender := photo_name_split$V2]
 # View(interim)
 
 nike_only <- interim[logo=="nike"]
-nike_only <- nike_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+nike_only <- nike_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 rows_to_keep_nike <- nike_only[, join_id]
 none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep_nike)
 # none_c_rows <- none_c_matched[, join_id]
@@ -448,18 +444,17 @@ To ensure that the effect we observed for our above Trader Joe's baseline model 
 
 ``` r
 #interaction term not included because of perfect collinearity (potentially a product of randomization)
-model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile)]
+model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind)]
 coeftest(model_9, vcovHC(model_9))
 ```
 
     ## 
     ## t test of coefficients:
     ## 
-    ##               Estimate Std. Error t value  Pr(>|t|)    
-    ## (Intercept)    26.0128     7.3863  3.5217 0.0007383 ***
-    ## treat_ind       4.9744     2.9404  1.6917 0.0949061 .  
-    ## smilenonsmile -15.4286     7.6543 -2.0157 0.0474656 *  
-    ## smilesmile    -13.9792     7.4770 -1.8696 0.0654940 .  
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) 11.61282    3.14558  3.6918  0.00042 ***
+    ## treat_ind    4.97436    2.97478  1.6722  0.09866 .  
+    ## smile_ind    0.42083    3.07898  0.1367  0.89165    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -470,10 +465,10 @@ anova(model_8, model_9, test = 'F')
     ## Analysis of Variance Table
     ## 
     ## Model 1: total_counts ~ treat_ind
-    ## Model 2: total_counts ~ treat_ind + smile
+    ## Model 2: total_counts ~ treat_ind + smile_ind
     ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
     ## 1     76 12443                           
-    ## 2     74 11996  2    447.61 1.3806 0.2578
+    ## 2     75 12440  1    3.2696 0.0197 0.8887
 
 ``` r
 model_10 <- nike_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gender)]
@@ -504,7 +499,7 @@ anova(model_8, model_10, test = 'F')
     ## 2     74 12420  2    23.978 0.0714 0.9311
 
 ``` r
-model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile
+model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind
                                        + gender + treat_ind*gender)]
 coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
 ```
@@ -513,12 +508,11 @@ coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
     ## t test of coefficients:
     ## 
     ##                   Estimate Std. Error t value Pr(>|t|)   
-    ## (Intercept)        25.4474     8.5807  2.9657 0.004095 **
-    ## treat_ind           6.1053     4.4375  1.3758 0.173138   
-    ## smilenonsmile     -15.7314     8.8289 -1.7818 0.078997 . 
-    ## smilesmile        -14.3073     8.6840 -1.6475 0.103805   
-    ## genderm             1.7084     5.1079  0.3345 0.739010   
-    ## treat_ind:genderm  -2.2053     6.0550 -0.3642 0.716774   
+    ## (Intercept)       11.11819    4.07554  2.7280 0.007976 **
+    ## treat_ind          6.10526    4.53080  1.3475 0.181986   
+    ## smile_ind          0.43222    3.15919  0.1368 0.891556   
+    ## genderm            0.95087    5.14805  0.1847 0.853973   
+    ## treat_ind:genderm -2.20526    6.11984 -0.3603 0.719629   
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -529,10 +523,10 @@ anova(model_8, model_nike_gen_smile, test = 'F')
     ## Analysis of Variance Table
     ## 
     ## Model 1: total_counts ~ treat_ind
-    ## Model 2: total_counts ~ treat_ind + smile + gender + treat_ind * gender
+    ## Model 2: total_counts ~ treat_ind + smile_ind + gender + treat_ind * gender
     ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
     ## 1     76 12443                           
-    ## 2     72 11965  4    478.25 0.7195 0.5814
+    ## 2     73 12416  3    27.408 0.0537 0.9835
 
 ``` r
 stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text', 
@@ -540,9 +534,8 @@ stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text',
                     robust_se(model_nike_gen_smile)),
           column.labels = c('Model 8', 'Model 9', 'Model 10', 'Saturated Model'),
           dep.var.labels = c('Total Number of Times Chosen'),
-          covariate.labels = c("Contains Logo", 'No Smile', 
-                               'Smile', 'Male Photo Subject', "Contains Logo*Male",
-                               'Baseline'),
+          covariate.labels = c("Contains Logo", 'Smile', 'Male Photo Subject',
+                               "Contains Logo*Male", 'Baseline'),
           title = "Table 3: Nike Only Models")
 ```
 
@@ -556,29 +549,26 @@ stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text',
     ##                             (1)                (2)                (3)                (4)        
     ## ------------------------------------------------------------------------------------------------
     ## Contains Logo             4.974*              4.974*             6.105              6.105       
-    ##                           (2.936)            (2.940)            (4.467)            (4.438)      
+    ##                           (2.936)            (2.975)            (4.467)            (4.531)      
     ##                                                                                                 
-    ## No Smile                                    -15.429**                              -15.731*     
-    ##                                              (7.654)                               (8.829)      
+    ## Smile                                         0.421                                 0.432       
+    ##                                              (3.079)                               (3.159)      
     ##                                                                                                 
-    ## Smile                                        -13.979*                              -14.307*     
-    ##                                              (7.477)                               (8.684)      
-    ##                                                                                                 
-    ## Male Photo Subject                                               0.982              1.708       
-    ##                                                                 (5.068)            (5.108)      
+    ## Male Photo Subject                                               0.982              0.951       
+    ##                                                                 (5.068)            (5.148)      
     ##                                                                                                 
     ## Contains Logo*Male                                               -2.205             -2.205      
-    ##                                                                 (6.037)            (6.055)      
+    ##                                                                 (6.037)            (6.120)      
     ##                                                                                                 
-    ## Baseline                 11.872***          26.013***          11.368***          25.447***     
-    ##                           (2.469)            (7.386)            (3.606)            (8.581)      
+    ## Baseline                 11.872***          11.613***          11.368***          11.118***     
+    ##                           (2.469)            (3.146)            (3.606)            (4.076)      
     ##                                                                                                 
     ## ------------------------------------------------------------------------------------------------
     ## Observations                78                  78                 78                 78        
-    ## R2                         0.037              0.072              0.039              0.074       
-    ## Adjusted R2                0.025              0.034              0.0002             0.010       
-    ## Residual Std. Error  12.796 (df = 76)    12.732 (df = 74)   12.955 (df = 74)   12.891 (df = 72) 
-    ## F Statistic         2.947* (df = 1; 76) 1.913 (df = 3; 74) 1.006 (df = 3; 74) 1.156 (df = 5; 72)
+    ## R2                         0.037              0.038              0.039              0.039       
+    ## Adjusted R2                0.025              0.012              0.0002             -0.013      
+    ## Residual Std. Error  12.796 (df = 76)    12.879 (df = 75)   12.955 (df = 74)   13.042 (df = 73) 
+    ## F Statistic         2.947* (df = 1; 76) 1.464 (df = 2; 75) 1.006 (df = 3; 74) 0.750 (df = 4; 73)
     ## ================================================================================================
     ## Note:                                                                *p<0.1; **p<0.05; ***p<0.01
 

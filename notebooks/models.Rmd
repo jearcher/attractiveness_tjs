@@ -46,6 +46,7 @@ data[, nike_logo := ifelse(test = grepl(pattern = "nike", data[, logo]),
 data[, no_logo := ifelse(test = grepl(pattern = "none", data[, logo]),
                                               yes = 1, no = 0)]
 data[, survey_block := gsub("^.*_", "", data$photo_block)]
+data[, smile_ind := ifelse(data[,smile=='smile'], 1, 0)]
 
 #names(data)
 
@@ -58,8 +59,8 @@ hist(data[data$treat_ind==0]$total_counts)
 hist(data[data$nike_logo==1]$total_counts)
 
 # Why does this print density, etc text. Maybe split into different chunks? Maybe write it similar to above?
-data[smile == 'smile', hist(total_counts)]
-data[smile == 'nonsmile', hist(total_counts)]
+data[smile_ind == 0, hist(total_counts)]
+data[smile_ind == 1, hist(total_counts)]
 ```
 
 ```{r initialize stargazer}
@@ -86,7 +87,7 @@ coeftest(model_3, vcovHC(model_3))
 
 
 ```{r smile model}
-model_4 <- data[, lm(total_counts ~ tjs_logo + smile)]
+model_4 <- data[, lm(total_counts ~ tjs_logo + smile_ind)]
 coeftest(model_4, vcovHC(model_4))
 anova(model_1, model_4, test = 'F')
 ```
@@ -98,7 +99,7 @@ stargazer(model_1, model_2, model_3, model_4, type = 'text',
           column.labels = c('Model 1', 'Model 2', 'Model 3', 'Model 4'),
           dep.var.labels = c('Total Number of Times Chosen'),
           covariate.labels = c("Trader Joe's Logo", 'Survey Block B', 
-                               'Survey Block C', 'Survey Block D', "No Smile",
+                               'Survey Block C', 'Survey Block D',
                               'Smile', 'Baseline'),
           title = "Table 1: Baseline Models")
 ```
@@ -115,10 +116,10 @@ interim[, gender := photo_name_split$V2]
 
 ## Subset needed columns and match control photos to tjs photos (not including photos that were blank in both control and treatment)
 tjs_only <- interim[logo=="tjs"]
-tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 rows_to_keep <- tjs_only[, join_id]
 none_c_only <- interim[logo=="none" & treat_ind<1]
-none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep)
 
 # none_c_rows <- none_c_matched[, join_id]
@@ -136,7 +137,7 @@ coeftest(model_5, vcovHC(model_5))
 ```
 
 ```{r tjs only + smile model}
-model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile)]
+model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind)]
 coeftest(model_6, vcovHC(model_6))
 anova(model_5, model_6, test = 'F')
 ```
@@ -148,8 +149,8 @@ anova(model_5, model_7, test = 'F')
 ```
 
 ```{r tjs saturated model}
-model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile
-                                       + gender + treat_ind*gender + smile*gender)]
+model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind
+                                       + gender + treat_ind*gender + smile_ind*gender)]
 coeftest(model_gen_smile, vcovHC(model_gen_smile))
 anova(model_5, model_gen_smile, test = 'F')
 ```
@@ -175,7 +176,7 @@ interim[, gender := photo_name_split$V2]
 # View(interim)
 
 nike_only <- interim[logo=="nike"]
-nike_only <- nike_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+nike_only <- nike_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile_ind", "gender")]
 rows_to_keep_nike <- nike_only[, join_id]
 none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep_nike)
 # none_c_rows <- none_c_matched[, join_id]
@@ -192,7 +193,7 @@ To ensure that the effect we observed for our above Trader Joe's baseline model 
 
 ```{r nike only + smile}
 #interaction term not included because of perfect collinearity (potentially a product of randomization)
-model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile)]
+model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind)]
 coeftest(model_9, vcovHC(model_9))
 anova(model_8, model_9, test = 'F')
 ```
@@ -204,7 +205,7 @@ anova(model_8, model_10, test = 'F')
 ```
 
 ```{r nike saturated model}
-model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile
+model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind
                                        + gender + treat_ind*gender)]
 coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
 anova(model_8, model_nike_gen_smile, test = 'F')
@@ -216,9 +217,8 @@ stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text',
                     robust_se(model_nike_gen_smile)),
           column.labels = c('Model 8', 'Model 9', 'Model 10', 'Saturated Model'),
           dep.var.labels = c('Total Number of Times Chosen'),
-          covariate.labels = c("Contains Logo", 'No Smile', 
-                               'Smile', 'Male Photo Subject', "Contains Logo*Male",
-                               'Baseline'),
+          covariate.labels = c("Contains Logo", 'Smile', 'Male Photo Subject',
+                               "Contains Logo*Male", 'Baseline'),
           title = "Table 3: Nike Only Models")
 ```
 
