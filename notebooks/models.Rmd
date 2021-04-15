@@ -1,7 +1,7 @@
 ---
 title: "R Notebook"
 author: "Josh Archer, Hannah Choi, Josh Lin, Pauline Yue"
-output: github_document
+output: pdf_document
 ---
 
 ```{r, include=FALSE}
@@ -48,9 +48,9 @@ data[, no_logo := ifelse(test = grepl(pattern = "none", data[, logo]),
                                               yes = 1, no = 0)]
 data[, survey_block := gsub("^.*_", "", data$photo_block)]
 
-names(data)
+#names(data)
 
-View(data)
+#View(data)
 ```
 
 ```{r histograms}
@@ -116,7 +116,7 @@ none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep)
 
 # View(none_c_matched)
 tjs_vs_control <- rbind(tjs_only, none_c_matched)
-View(tjs_vs_control)
+#View(tjs_vs_control)
 ```
 
 ```{r new baseline for just tjs}
