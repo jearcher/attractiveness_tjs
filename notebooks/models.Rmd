@@ -11,7 +11,25 @@ library(sandwich)
 library(stargazer)
 library(pwr)
 ```
+# All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?
+Josh Archer, Hannah Choi, Joshua Lin, Pauline Yue
+
+##Abstract
+
  
+## Background
+
+Over the years, Trader Joe's has become more than just a place to get groceries, but rather an experience in itself. From tropical island themed interior and uniforms for their employees, to unique products only found at Trader Joe's, the brand has a competitive edge in the grocery industry. The culture around the store has allowed it to develop a cult following of customers who rave about their products. More recently, there has been increasing attention towards the store's employees and the general opinion that Trader Joe's workers are more attractive than the average individual. Based on this observed social phenomenon, we conducted an experiment to test this hypothesis. 
+
+## Research Question & Hypothesis
+	
+Does working at Trader Joe's make you more attractive? 
+
+## Experiment/Research Design
+
+### Study Design
+For our study, we implemented a swipe-style survey similar to modern-day dating apps like Tinder, in which participants swipe through various photos and choose the individual they are more attracted to. We obtained photos from our personal circle of friends, and we attempted to maintain a wide array of individuals in our photo sample. In total, we received 30 photos from 15 female-identifying folks, and 36 photos from 19 male-identifying folks. We also designed a pilot study similar to our experimental survey that featured the same swipe design, but on a smaller scale. We distributed the pilot study first to determine how long it would take participants to finish the survey and what feedback they might give in response to our free response question to help us improve our final iteration. We then posted our final survey through Amazon Mturk.
+
 
 ```{r data}
 data <- fread("../data/processed/analysis_table.csv")
@@ -31,11 +49,7 @@ data[, no_logo := ifelse(test = grepl(pattern = "none", data[, logo]),
 data[, survey_block := gsub("^.*_", "", data$photo_block)]
 
 names(data)
-```
 
-```{r}
-model_1 <- lm(total_counts ~ tjs_logo + survey_block, data)
-=======
 View(data)
 ```
 
@@ -48,65 +62,148 @@ data[smile == 'smile', hist(total_counts)]
 data[smile == 'nonsmile', hist(total_counts)]
 ```
 
+```{r initialize stargazer}
+robust_se <- function(mod, type = 'HC3') { sqrt(diag(vcovHC(mod, type)))}
+```
+
 ```{r baseline}
-model <- lm(total_counts ~ tjs_logo + survey_block, data)
-
-
+model_1 <- data[, lm(total_counts ~ tjs_logo)]
+coeftest(model_1, vcovHC(model_1))
 ```
 
-
-```{r blocks}
-#model2 <- lm(total_counts ~ tjs_logo*treat_ind*survey_block, data)
-#summary(model2)
-model2 <- lm(total_counts ~ tjs_logo + tjs_logo*survey_block, data)
-summary(model2)
+```{r baseline + blocks}
+model_2 <- data[, lm(total_counts ~ tjs_logo + survey_block)]
+coeftest(model_2, vcovHC(model_2))
+anova(model_1, model_2, test= 'F')
 ```
+Although the F-test p-value is almost 1, looking at this second baseline model, we can see that our randomization was successful, since we did not see within-survey group effects. In other words, our treatment fulfilled the exclusion principle. (*add more here later*)
 
-```{r placebo design}
-cace_subset_model <- data[nike_logo ==  0, lm(total_counts ~ tjs_logo)]
-summary(cace_subset_model)
+
+```{r without nike}
+model_3 <- data[nike_logo ==  0, lm(total_counts ~ tjs_logo)]
+coeftest(model_3, vcovHC(model_3))
 ```
 
 
 ```{r smile model}
-smile_model <- data[, lm(total_counts ~ tjs_logo + smile)]
-summary(smile_model)
-
-#power calculation
-pwr.f2.test(u = 3, v = 211, f2 = 0.01669)
+model_4 <- data[, lm(total_counts ~ tjs_logo + smile)]
+coeftest(model_4, vcovHC(model_4))
+anova(model_1, model_4, test = 'F')
 ```
 
+(Insert stargazer here for initial model creation, 1-4)
 
-```{r}
+```{r clean for tj vs control}
+# Remove nike logo photos and look for just tjs photos
 interim <- data[logo != "nike"]
-# View(interim)
 tjs_only <- data[logo == "tjs"]
-View(tjs_only)
 
+# Create a join_id to combine tables later
 photo_name_split <- read.table(text = interim[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
 interim[, join_id := paste(photo_name_split$V1, photo_name_split$V2, photo_name_split$V3, photo_name_split$V6, photo_name_split$V7, sep="_")]
+interim[, gender := photo_name_split$V2]
 
-# View(interim)
+## Subset needed columns and match control photos to tjs photos (not including photos that were blank in both control and treatment)
 tjs_only <- interim[logo=="tjs"]
-tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile")]
+tjs_only <- tjs_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
 rows_to_keep <- tjs_only[, join_id]
 none_c_only <- interim[logo=="none" & treat_ind<1]
-none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile")]
+none_c_only <- none_c_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
 none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep)
-
-
 
 # none_c_rows <- none_c_matched[, join_id]
 # tjs_issue <- subset(tjs_only, !(join_id %in% none_c_rows))
 
 # View(none_c_matched)
-tjs_vs_control <- rbind(tjs_only, none_c_only)
-
-
-
+tjs_vs_control <- rbind(tjs_only, none_c_matched)
+View(tjs_vs_control)
 ```
 
+```{r new baseline for just tjs}
+#42 blanks and 42 with tj's
+model_5 <- tjs_vs_control[, lm(total_counts ~ treat_ind)]
+coeftest(model_5, vcovHC(model_5))
+```
+
+```{r tjs only + smile model}
+model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile)]
+coeftest(model_6, vcovHC(model_6))
+anova(model_5, model_6, test = 'F')
+```
+
+```{r tjs only + gender model}
+model_7 <- tjs_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gender)]
+coeftest(model_7, vcovHC(model_7))
+anova(model_5, model_7, test = 'F')
+```
+
+```{r tjs saturated model}
+model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile + treat_ind*smile
+                                       + gender + treat_ind*gender + smile*gender)]
+coeftest(model_gen_smile, vcovHC(model_gen_smile))
+anova(model_5, model_gen_smile, test = 'F')
+```
+
+(insert stargazer table here, models 5-model_gen_smile)
+
+```{r clean for nike vs control}
+interim <- copy(data)
+photo_name_split <- read.table(text = interim[ , photo_block], sep = "_", as.is = TRUE, fill = TRUE)
+interim[, join_id := paste(photo_name_split$V1, photo_name_split$V2, photo_name_split$V3, photo_name_split$V6, photo_name_split$V7, sep="_")]
+interim[, gender := photo_name_split$V2]
+# View(interim)
+
+nike_only <- interim[logo=="nike"]
+nike_only <- nike_only[ , c("photo_block", "join_id", "treat_ind", "survey_block", "total_counts", "smile", "gender")]
+rows_to_keep_nike <- nike_only[, join_id]
+none_c_matched <- subset(none_c_only, join_id %in% rows_to_keep_nike)
+# none_c_rows <- none_c_matched[, join_id]
+# tjs_issue <- subset(tjs_only, !(join_id %in% none_c_rows))
+# View(none_c_matched)
+nike_vs_control <- rbind(nike_only, none_c_matched) # only has 39 blanks and 39 nike logo photos
+```
+
+```{r nike only baseline}
+model_8 <- nike_vs_control[, lm(total_counts ~ treat_ind)]
+coeftest(model_8, vcovHC(model_8))
+```
+To ensure that the effect we observed for our above Trader Joe's baseline model (Model 5) is not due to simply adding a logo to a photo, we included photos that had a Nike logo as a robustness check.  While the number of Nike logo pairs is smaller (n=39), the overall ratio is almost the same, and because of the similar proportion of photos pairs, we can infer that the estimated effect we saw in the Trader Joe's baseline model is unique to the Trader Joe's logo as they two slope coefficients are vastly different.
+
+```{r nike only + smile}
+#interaction term not included because of perfect collinearity (potentially a product of randomization)
+model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile)]
+coeftest(model_9, vcovHC(model_9))
+anova(model_8, model_9, test = 'F')
+```
+
+```{r nike only + gender}
+model_10 <- nike_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gender)]
+coeftest(model_10, vcovHC(model_10))
+anova(model_8, model_10, test = 'F')
+```
+
+```{r nike saturated model}
+model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile
+                                       + gender + treat_ind*gender)]
+coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
+anova(model_8, model_nike_gen_smile, test = 'F')
+```
+(insert stargazer table here, model 8- model_nike_gen_smile)
+
+### Power Calculation
+
+```{r power calculation}
+#Power calculation using model_6
+summary(model_5)
+effect_size <- 0.02517/(1-0.02517) #use multiple R-squared value from model 6 summary
+pwr.f2.test(u = 1, v = 82, f2 = effect_size) #u and v come from DF from summary
+```
+To determine how much statistical power our final model (Model 5) had, based on our model parameters, we found that our model had about 30.73% statistical power. This means that our model only had 30.73% chance of reporting a true positive result. Although the reported statistical power is quite low, we feel that this level of power is understandable given our small data size and the fact we were dealing with data related to how humans think.    
+
+First, when we only focused on photos that were blank in control and contained a Trader Joe's logo in treatment, we only had 42 total unique photo subjects. Therefore, we were comparing across 42 pairs, which is a fairly small dataset. Second, when dealing with sociology- and psychology-type questions like attraction, given the limitations of our experimental design, we cannot fully capture how humans think using the variables we had operationalized. Therefore, we argue that it is reasonable that our statistical power is quite small.
+
 ```{r t-tests}
+#where should this go/should we keep it
 tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
 tjs_vs_nike
 tjs_vs_control <- data[, t.test(data[tjs_logo == 1, total_counts], data[tjs_logo == 0, total_counts], paired = T)] #attempt to make these paired later
