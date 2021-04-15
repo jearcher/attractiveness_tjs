@@ -44,10 +44,7 @@ We created 4 sets of control and treatment [attraction selection question blocks
 
 ### Experimental materials (e.g. treatment materials)
 #### Measurement of variables
-The Primary outcome was :
-- 0 if the person chosen was not wearing a logo
-- 1 if the person was wearing a Trader Joe's logo
-- 2 if the person was wearing a Nike logo
+The primary outcome was the total number of times a photo was chosen.
 
 ## Modeling Choices
 (blurb here about choosing to use models)
@@ -79,10 +76,9 @@ data[, smile_ind := ifelse(data[,smile=='smile'], 1, 0)]
 hist(data[data$tjs_logo==1]$total_counts)
 hist(data[data$treat_ind==0]$total_counts)
 hist(data[data$nike_logo==1]$total_counts)
+hist(data[data$smile_ind==1]$total_counts)
+hist(data[data$smile_ind==0]$total_counts)
 
-# Why does this print density, etc text. Maybe split into different chunks? Maybe write it similar to above?
-data[smile_ind == 0, hist(total_counts)]
-data[smile_ind == 1, hist(total_counts)]
 ```
 
 ```{r initialize stargazer}
@@ -169,6 +165,8 @@ model_7 <- tjs_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gen
 coeftest(model_7, vcovHC(model_7))
 anova(model_5, model_7, test = 'F')
 ```
+Here, we observe that the estimated effect of being shown a male subject in the photo and the interaction term between having a logo and the male gender were positive. It's likely that the respondents overall felt that certain male photo subjects were more attractive on average compared to other photo subjects within the survey sets, and that certain male photo subjects had a larger boost in their selection rates due to the Trader Joe's logo compared to the effect the logo had for females.
+
 
 ```{r tjs saturated model}
 model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind
@@ -262,15 +260,4 @@ Moving forward with our study, we indeed realize there is much more we can do to
 
 Moving forward with this study, we would also like to in
 
-
-```{r t-tests, echo=FALSE}
-#where should this go/should we keep it
-#tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
-#tjs_vs_nike
-#tjs_vs_control <- data[, t.test(data[tjs_logo == 1, total_counts], data[tjs_logo == 0, total_counts], paired = T)] #attempt to make these paired later
-#tjs_vs_control
-#nike_vs_control <- data[, t.test(data[nike_logo == 1, total_counts], data[nike_logo == 0, total_counts])]
-#nike_vs_control
-#smile_vs_nonsmile <- data[, t.test(data[smile == 'smile', total_counts], data[smile == 'nonsmile', total_counts])]
-#smile_vs_nonsmile
-```
+## Conclusion
