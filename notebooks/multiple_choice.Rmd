@@ -1,0 +1,95 @@
+---
+title: "multiple_choice_data"
+output: html_document
+---
+
+```{r}
+library(data.table)
+library(tidyverse)
+library(dplyr)
+```
+
+
+```{r}
+d <- fread("/Users/Hannah/Desktop/attractiveness_tjs/data/raw/raw_survey_data_main.csv")
+d
+```
+
+
+```{r}
+swipe_cols <- colnames(d)[grepl(pattern = "swipe", x = colnames(d))]
+swipe_data <- subset(d, select = swipe_cols)
+
+swipes_phys_cols <- colnames(swipe_data)[grepl(pattern = "phys_", x = colnames(swipe_data))]
+swipes_person_cols <- colnames(swipe_data)[grepl(pattern = "person_", x = colnames(swipe_data))]
+
+swipe_phys <- subset(swipe_data, select = swipes_phys_cols)
+swipe_person <- subset(swipe_data, select = swipes_person_cols)
+
+ideal_cols <- colnames(d)[grepl(pattern = "ideal_", x = colnames(d))]
+ideal_data <- subset(d, select = ideal_cols)
+  
+ideal_phys_cols <- colnames(ideal_data)[grepl(pattern = "ideal_phys_fr", x = colnames(ideal_data))]
+ideal_person_cols <- colnames(ideal_data)[grepl(pattern = "ideal_person_fr", x = colnames(ideal_data))]
+
+ideal_phys <- subset(ideal_data, select = ideal_phys_cols)
+ideal_person <- subset(ideal_data, select = ideal_person_cols)
+```
+
+
+```{r}
+swipe_phys
+write.csv(swipe_phys,"/Users/Hannah/Desktop/swipe_phys.csv", row.names = FALSE)
+```
+
+```{r}
+ideal_phys
+```
+
+
+```{r}
+ideal_phys_counts <- setDT(count(ideal_phys, vars=ideal_phys_fr))
+setnames(ideal_phys_counts, "vars", "physical_attribute")
+setnames(ideal_phys_counts, "n", "counts")
+
+ideal_phys_counts <- ideal_phys_counts[-c(1, 6)]
+ideal_phys_counts
+  
+```
+```{r}
+# par(mar=c(5,10,3,10))
+barplot(counts ~ physical_attribute, ideal_phys_counts, ylim = c(0,140), col = '#69b3a2', main = "What do you most look for in an ideal partner out of these physical traits?")
+```
+
+
+```{r}
+ideal_person_counts <- setDT(count(ideal_person, vars=ideal_person_fr))
+setnames(ideal_person_counts, "vars", "personality_attribute")
+setnames(ideal_person_counts, "n", "counts")
+
+ideal_person_counts <- ideal_person_counts[-c(1, 7)]
+ideal_person_counts
+  
+```
+
+```{r}
+# par(mar=c(5,10,3,10))
+barplot(counts ~ personality_attribute, ideal_person_counts, ylim = c(0,100), col = '#69b3a2',  main = 				
+"What do you most look for in an ideal partner out of these personality traits?")
+```
+
+
+
+```{r}
+swipe_person 
+ideal_person
+```
+
+
+
+```{r}
+ideal_data
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

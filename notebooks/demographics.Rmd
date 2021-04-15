@@ -1,0 +1,25 @@
+---
+title: "demographic_data"
+output: html_document
+---
+
+```{r}
+library(data.table)
+```
+
+
+```{r}
+d <- fread("/Users/Hannah/Desktop/attractiveness_tjs/data/raw/raw_survey_data_main.csv")
+d
+```
+
+
+```{r}
+demographic <- d[, c("Age", "Gender", "Ethnicity", "Ethnicity2", "Marital", "Employment", "Income")] 
+demographic
+```
+
+
+```{r pressure, echo=FALSE}
+
+```
