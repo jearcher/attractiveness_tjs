@@ -1,5 +1,6 @@
 ---
 title: "R Notebook"
+author: "Josh Archer, Hannah Choi, Josh Lin, Pauline Yue"
 output: github_document
 ---
 
@@ -12,7 +13,6 @@ library(stargazer)
 library(pwr)
 ```
 # All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?
-Josh Archer, Hannah Choi, Joshua Lin, Pauline Yue
 
 ##Abstract
 
@@ -144,7 +144,12 @@ coeftest(model_gen_smile, vcovHC(model_gen_smile))
 anova(model_5, model_gen_smile, test = 'F')
 ```
 
-(insert stargazer table here, models 5-model_gen_smile)
+```{r tjs stargazer}
+stargazer(model_5, model_6, model_7, model_gen_smile, type = 'text', 
+          se = list(robust_se(model_5), robust_se(model_6), robust_se(model_7), 
+                    robust_se(model_gen_smile)))
+```
+
 
 ```{r clean for nike vs control}
 interim <- copy(data)
@@ -188,7 +193,13 @@ model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile
 coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
 anova(model_8, model_nike_gen_smile, test = 'F')
 ```
-(insert stargazer table here, model 8- model_nike_gen_smile)
+
+```{r nike stargazer}
+stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text', 
+          se = list(robust_se(model_8), robust_se(model_9), robust_se(model_10), 
+                    robust_se(model_nike_gen_smile)))
+```
+
 
 ### Power Calculation
 
