@@ -14,7 +14,7 @@ library(pwr)
 ```
 # All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?
 
-##Abstract
+## Abstract
 
  
 ## Background
@@ -31,7 +31,7 @@ Does working at Trader Joe's make you more attractive?
 For our study, we implemented a swipe-style survey similar to modern-day dating apps like Tinder, in which participants swipe through various photos and choose the individual they are more attracted to. We obtained photos from our personal circle of friends, and we attempted to maintain a wide array of individuals in our photo sample. In total, we received 30 photos from 15 female-identifying folks, and 36 photos from 19 male-identifying folks. We also designed a pilot study similar to our experimental survey that featured the same swipe design, but on a smaller scale. We distributed the pilot study first to determine how long it would take participants to finish the survey and what feedback they might give in response to our free response question to help us improve our final iteration. We then posted our final survey through Amazon Mturk.
 
 
-```{r data}
+```{r data, echo=FALSE}
 data <- fread("../data/processed/analysis_table.csv")
 
 data[, treat_ind := ifelse(treat=='t',1,0)]
@@ -53,11 +53,12 @@ data[, survey_block := gsub("^.*_", "", data$photo_block)]
 #View(data)
 ```
 
-```{r histograms}
+```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$tjs_logo==1]$total_counts)
 hist(data[data$treat_ind==0]$total_counts)
 hist(data[data$nike_logo==1]$total_counts)
 
+# Why does this print density, etc text. Maybe split into different chunks? Maybe write it similar to above?
 data[smile == 'smile', hist(total_counts)]
 data[smile == 'nonsmile', hist(total_counts)]
 ```
@@ -219,7 +220,7 @@ To determine how much statistical power our final model (Model 5) had, based on 
 
 First, when we only focused on photos that were blank in control and contained a Trader Joe's logo in treatment, we only had 42 total unique photo subjects. Therefore, we were comparing across 42 pairs, which is a fairly small dataset. Second, when dealing with sociology- and psychology-type questions like attraction, given the limitations of our experimental design, we cannot fully capture how humans think using the variables we had operationalized. Therefore, we argue that it is reasonable that our statistical power is quite small.
 
-```{r t-tests}
+```{r t-tests, echo=FALSE}
 #where should this go/should we keep it
 #tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
 #tjs_vs_nike
