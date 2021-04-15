@@ -91,6 +91,12 @@ coeftest(model_4, vcovHC(model_4))
 anova(model_1, model_4, test = 'F')
 ```
 
+
+```{r}
+stargazer(model_1, model_2, model_3, model_4, type = 'text', 
+          se = list(robust_se(model_1),robust_se(model_2), robust_se(model_3), robust_se(model_4)))
+```
+
 (Insert stargazer here for initial model creation, 1-4)
 
 ```{r clean for tj vs control}
@@ -215,12 +221,12 @@ First, when we only focused on photos that were blank in control and contained a
 
 ```{r t-tests}
 #where should this go/should we keep it
-tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
-tjs_vs_nike
-tjs_vs_control <- data[, t.test(data[tjs_logo == 1, total_counts], data[tjs_logo == 0, total_counts], paired = T)] #attempt to make these paired later
-tjs_vs_control
-nike_vs_control <- data[, t.test(data[nike_logo == 1, total_counts], data[nike_logo == 0, total_counts])]
-nike_vs_control
-smile_vs_nonsmile <- data[, t.test(data[smile == 'smile', total_counts], data[smile == 'nonsmile', total_counts])]
-smile_vs_nonsmile
+#tjs_vs_nike <- data[, t.test(data[tjs_logo == 1, total_counts], data[nike_logo == 1, total_counts])]
+#tjs_vs_nike
+#tjs_vs_control <- data[, t.test(data[tjs_logo == 1, total_counts], data[tjs_logo == 0, total_counts], paired = T)] #attempt to make these paired later
+#tjs_vs_control
+#nike_vs_control <- data[, t.test(data[nike_logo == 1, total_counts], data[nike_logo == 0, total_counts])]
+#nike_vs_control
+#smile_vs_nonsmile <- data[, t.test(data[smile == 'smile', total_counts], data[smile == 'nonsmile', total_counts])]
+#smile_vs_nonsmile
 ```
