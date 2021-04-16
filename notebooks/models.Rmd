@@ -89,16 +89,38 @@ data[, smile_ind := ifelse(data[,smile=='smile'], 1, 0)]
 ```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$tjs_logo==1]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Trader Joe's Photos")
+```
+
+Figure 7 shows a distribution of the total counts of photos with a Trader Joe's logo chosen as the more attractive between two options. There appears to be a relatively normal distribution that is slightly skewed right. 
+
+```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$treat_ind==0]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Blank Photos")
+```
+
+Figure 8 depicts a distribution of the total counts of photos with no logo chosen as the more attractive between two options. There is a bimodal distribution of the data, with values condensed at both the lower and upper ends of the x axis. 
+
+```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$nike_logo==1]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Nike Photos")
+``` 
+
+Figure 9 shows a distribution of the total counts of photos with a Nike logo chosen as the more attractive between two options. The distribution is relatively uniform across all bins. 
+
+```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$smile_ind==1]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Smiling Photos")
+```
+
+Figure 10 shows the distribution of the total counts of photos with the individual smiling chosen as the more attractive between two options.The distribution is non-symmetric. 
+
+```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$smile_ind==0]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Non-Smiling Photos")
-
 ```
+
+Figure 11 shows the distribution of the total counts of photos with the individual not smiling chosen as the more attractive between two options. The distribution is non-symmetric.
+
 
 ```{r initialize stargazer, include= False}
 robust_se <- function(mod, type = 'HC3') { sqrt(diag(vcovHC(mod, type)))}
