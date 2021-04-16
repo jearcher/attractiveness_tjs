@@ -14,40 +14,54 @@ library(pwr)
 ```
 
 ## Abstract
+This study seeks to investigate how working at Trader Joe's affects one's attractiveness. Our null hypothesis was that working at Trader Joe's does not influence an individual's attractiveness, and our alternative hypothesis is that it does. For this research, we implemented a survey design in which we asked participants to choose between two photos of individuals, for a total of 14 pairs. We obtained 247 completed responses, and we conducted several linear regression models on our data. In the end, we were unable to reject the null hypothesis, as we did not find our results to be statistically significant. Nonetheless, we feel that our study begs further research to better understand how people define attraction.  
 
  
 ## Background
 
-Over the years, Trader Joe's has become more than just a place to get groceries, but rather an experience in itself. From tropical island themed interior and uniforms for their employees, to unique products only found at Trader Joe's, the brand has a competitive edge in the grocery industry. The culture around the store has allowed it to develop a cult following of customers who rave about their products. More recently, there has been increasing attention towards the store's employees and the general opinion that Trader Joe's workers are more attractive than the average individual. Based on this observed social phenomenon, we conducted an experiment to test this hypothesis. 
+Over the years, Trader Joe's has become more than just a place to get groceries, but rather an experience in itself. From tropical island themed interior and uniforms for their employees, to unique products only found at Trader Joe's, the brand has a competitive edge in the grocery industry. The culture around the store has allowed it to develop a cult following of customers who rave about their products. More recently, there has been increasing attention towards the store's employees and the general opinion that Trader Joe's workers are more attractive than the average individual.     
+
+Based on this observed social phenomenon, we conducted an experiment to test this hypothesis. We are interested if a person's place of work really has an effect on their attractiveness, because we recognize that part of an individual's image is defined (for better or worse) by their professional role.   
 
 ## Research Question & Hypothesis
 	
-Does working at Trader Joe's make you more attractive? 
-Null Hypothesis: Working at Trader Joe's has no affect on attraction
-Alternative Hypothesis: Working at Trader Joe's has an affect on attraction
+Our research question is: Does working at Trader Joe's make you more attractive? We measured and compared 'attractiveness' of the subjects by counting the number of times a photo was chosen in treatment (with a logo) versus the number of times the photo was chosen in control (without a logo).  
+
+Our *null hypothesis* is that working at Trader Joe's has no effect on how attractive a person is, and our *alternative hypothesis* is that working at Trader Joe's has an effect on how attractive a person is. Based on our own experiences at Trader Joe's we expect there will be a positive impact of treatment on attractiveness. We also had an additional sub-question in which we were interested in studying the effect of smiling on attraction. Our null hypothesis for this sub-question is that smiling has no effect on attraction, and our alternative hypothesis is that smiling does have an effect.  
 
 ## Experiment/Research Design
 
 ### Study Design
 
-For our study, we implemented a swipe-style survey similar to modern-day dating apps like Tinder, in which participants swipe through various photos and choose the individual they are more attracted to. We obtained photos from our personal circle of friends, and we attempted to maintain a wide array of individuals in our photo sample. In total, we received 30 photos from 15 female-identifying folks, and 36 photos from 19 male-identifying folks. We also designed a pilot study similar to our experimental survey that featured the same swipe design, but on a smaller scale. We distributed the pilot study first to determine how long it would take participants to finish the survey and what feedback they might give in response to our free response question to help us improve our final iteration. We then posted our final survey through Amazon Mturk.
+For our study, we implemented a survey in which participants swipe through various pairs of photos and choose the individual they are more attracted to. We obtained photos from our personal circle of friends, and we attempted to maintain a wide array of individuals in our photo sample. In total, we received 30 photos from 15 female-identifying folks, and 36 photos from 19 male-identifying folks.  
 
-In the survey, all participants (n = 247) were prompted to choose who they found more attractive between a total of 14 pairs of individuals (14 male and 14 female) in a single-blind study. Two multiple choice questions appear after the selection asking what physical trait (smile, body type, hair, or eyes) and personality trait (kind, fun, adventurous, hardworking, or trustworthy) motivated their selection the most. We chose these answer choices based on the responses of the open-ended version of those questions in the pilot survey (n = 50). At the end of the survey we asked the same 2 questions with regards to an ideal partner in order to see if that criteria stayed the same throughout the survey. In total, the questions across all surveys remained the same with the variation being the pairs and type of image used for each subject. 
+#### Pilot Study
+We designed a pilot study (n=50) similar to our experimental survey that featured the same swipe design. We distributed the pilot study via Amazon Mechanical Turk first to determine how long it would take participants to finish the survey and what feedback they might give in response to our free response question to help us improve our final iteration. We read through the free responses to determine which choices we would include in the main study questions about physical and personality traits.  
+
+#### Main Study
+We then posted our final survey through Amazon Mturk. In the final survey, all participants (n = 247) were prompted to choose who they found more attractive between a total of 14 pairs of individuals (14 male and 14 female) in a single-blind study. Two multiple choice questions appear after the selection asking what physical trait (smile, body type, hair, or eyes) and personality trait (kind, fun, adventurous, hardworking, or trustworthy) motivated their selection the most. We chose these answer choices based on the responses of the open-ended version of those questions in the pilot survey. At the end of the survey we asked the same 2 questions with regards to an ideal partner in order to see if that criteria stayed the same throughout the survey. In total, the questions across all surveys remained the same with the variation being the pairs and type of image used for each subject.    
 
 ### Treatment
 
-The baseline for all photos was an individual wearing a monochrome shirt visible from the waist-up. The treatment in this study is the placement of a logo on a subject- the original photo altered with either a Trader Joe's and Nike logo prominently placed. This design created 6 iterations of an individual (smiling with no logo, smiling with Trader Joe's, smiling with Nike, non-smiling with no logo, non-smiling with Trader Joe's, and non-smiling with Nike). Although the main goal of our experiment was to see if the presence of a Trader Joe's logo would make an individual more attractive, we also included the Nike logo to see if there was an overall effect of a logo on one's attractiveness. It also served as a placebo of sorts and a means to maintain the single-blind nature of our study so that respondents would not infer that we were testing for the effect of a Trader Joe's affiliation on attractiveness. Furthermore, we wanted to see if smiling had an effect on attraction, and thus added smiling as a feature and potential covariate. 
+The baseline for all photos was an individual wearing a monochrome shirt visible from the waist-up. The treatment in this study is the placement of a logo on a subject's t-shirt- the original photo altered with either a Trader Joe's and Nike logo prominently placed. This design created 6 iterations of an individual (smiling with no logo, smiling with Trader Joe's, smiling with Nike, non-smiling with no logo, non-smiling with Trader Joe's, and non-smiling with Nike; see Appendix for example images). Although the main goal of our experiment was to see if the presence of a Trader Joe's logo would make an individual more attractive, we also included the Nike logo to see if there was an overall effect of a logo on one's attractiveness. It also served as a means to maintain the single-blind nature of our study so that respondents would not infer that we were testing for the effect of a Trader Joe's affiliation on attractiveness. Furthermore, we wanted to see if smiling had an effect on attraction, and thus added smiling as a feature and potential covariate.   
 
 ### Randomization engineering
 
-We created 4 sets of control and treatment [attraction selection question blocks]-control A, treatment A, control B, treatment B, control C, treatment C, control D, and treatment D. Within each set of treatment and control groups the same pairs and baseline photos were utilized, and only the treatment groups saw the introduction of a logo. The pairs and what type of logo (none, Trader Joe's, or Nike) an individual would have were randomly generated by using Python [insert code?] We implemented the randomizer function within Qualtrics to ensure that the question blocks with photographs would randomly present evenly across the survey distribution. [insert how many people were in each group]. We also used tools in Qualtrics to enable each of the question choices to appear in a random order, to minimize the possible human error of participants simply just clicking through the survey. Randomization the pairings was crucial to ensure that an individual with a baseline attractiveness objectively higher than others did not overshadow the effect of the logos. 
+We created 4 sets of control and treatment survey versions-control A, treatment A, control B, treatment B, control C, treatment C, control D, and treatment D. Within each set of treatment and control groups the same pairs and baseline photos were utilized, and only the treatment groups saw the introduction of a logo. The pairs and what type of logo (none, Trader Joe's, or Nike) an individual would have were randomly generated. We implemented the randomizer function within Qualtrics to ensure that the question blocks with photographs would randomly present evenly across the survey distribution. There were 30-32 respondents in each survey group (see consort document below). We also used tools in Qualtrics to enable each of the question choices to appear in a random order, to minimize the possible human error of participants simply just clicking through the survey. Randomization of the pairings was crucial to ensure that an individual with a baseline attractiveness objectively higher than others did not overshadow the effect of the logos.   
 
 ### Experimental materials (e.g. treatment materials)
-#### Measurement of variables
-The primary outcome was the total number of times a photo was chosen.
+The subjects of our study were 19 males and 15 females who volunteered to have their photos taken to be put in our surveys. Their photos were taken from the waist up, in a plain, solid color t-shirt, with variations of smiling or not smiling. Their t-shirts were kept plain so that we could either use that photo as a control, or photoshop a Trader Joe's or Nike logo onto them as treatment. The outcome we measured was the total number of times each photo was chosen.   
+
+Our study participants were Amazon Mechanical Turk workers who were located in the United States, had a high approval rating (> 90%), and a high quantity of approvals (> 50). We were able to receive a total of 247 completed responses to our survey. We were unable to view the incomplete responses through Qualtrics and did not include them in our analysis.   
+
 
 ## Modeling Choices
-(blurb here about choosing to use models)
+For our analysis, we decided to use linear regression to test our hypotheses. We were interested in regressing the total number of times a picture was chosen on whether or not the photo contained a Trader Joe's logo. At first, we built a linear regression model that compared photos that had a Trader Joe's logo to all other photos-both photos that were blank in both control and treatment and photos that contained a Nike logo.   
+
+However, this is an unbalanced comparison since the photos with Trader Joe's logos were compared to all photos. Thus, we decided to compare the photos in treatment with a TJs logo to the matching subset of photos in control. There were 42 photos in treatment with a Trader Joe's logo which we matched with 42 of the same photos in control without the logo. This resulted in a more accurate yet underpowered estimation of the linear model.   
+
+In order to avoid confusing a "Trader Joe's Logo" effect with a general logo effect, we did a similar comparison for Nike photos. We matched the 39 photos in treatment with a Nike logo to their 39 counterparts in control. We did not run this model to investigate a Nike logo effect, but instead referenced this model to better understand the Trader Joe's Logo Effect. For example, if there was a positive treatment effect for Trader joe's treatment and Nike treatment, we might think there is a general logo effect that is not specific to a Trader Joe's logo. However, as we will explore in the results section, the Trader Joe's and Nike logos have opposite estimated effects on outcomes.  
+
 ```{r data, echo=FALSE}
 data <- fread("../data/processed/analysis_table.csv")
 
@@ -73,15 +87,20 @@ data[, smile_ind := ifelse(data[,smile=='smile'], 1, 0)]
 
 ## Results
 ```{r histograms, message=FALSE, warning=FALSE}
-hist(data[data$tjs_logo==1]$total_counts)
-hist(data[data$treat_ind==0]$total_counts)
-hist(data[data$nike_logo==1]$total_counts)
-hist(data[data$smile_ind==1]$total_counts)
-hist(data[data$smile_ind==0]$total_counts)
+hist(data[data$tjs_logo==1]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Trader Joe's Photos")
+hist(data[data$treat_ind==0]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Blank Photos")
+hist(data[data$nike_logo==1]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Nike Photos")
+hist(data[data$smile_ind==1]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Smiling Photos")
+hist(data[data$smile_ind==0]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Non-Smiling Photos")
 
 ```
 
-```{r initialize stargazer}
+```{r initialize stargazer, include= False}
 robust_se <- function(mod, type = 'HC3') { sqrt(diag(vcovHC(mod, type)))}
 ```
 
