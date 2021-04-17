@@ -43,7 +43,7 @@ We then posted our final survey through Amazon Mturk. In the final survey, all p
 
 ### Treatment
 
-The baseline for all photos was an individual wearing a monochrome shirt visible from the waist-up. The treatment in this study is the placement of a logo on a subject's t-shirt- the original photo altered with either a Trader Joe's and Nike logo prominently placed. This design created 6 iterations of an individual (smiling with no logo, smiling with Trader Joe's, smiling with Nike, non-smiling with no logo, non-smiling with Trader Joe's, and non-smiling with Nike; see Appendix for example images). Although the main goal of our experiment was to see if the presence of a Trader Joe's logo would make an individual more attractive, we also included the Nike logo to see if there was an overall effect of a logo on one's attractiveness. It also served as a means to maintain the single-blind nature of our study so that respondents would not infer that we were testing for the effect of a Trader Joe's affiliation on attractiveness. Furthermore, we wanted to see if smiling had an effect on attraction, and thus added smiling as a feature and potential covariate.   
+The baseline for all photos was an individual wearing a monochrome shirt visible from the waist-up. The treatment in this study is the placement of a logo on a subject's t-shirt- the original photo altered with either a Trader Joe's and Nike logo prominently placed. This design created 6 iterations of an individual (smiling with no logo, smiling with Trader Joe's, smiling with Nike, non-smiling with no logo, non-smiling with Trader Joe's, and non-smiling with Nike; see Figures 1-6 in Appendix A for example images). Although the main goal of our experiment was to see if the presence of a Trader Joe's logo would make an individual more attractive, we also included the Nike logo to see if there was an overall effect of a logo on one's attractiveness. It also served as a means to maintain the single-blind nature of our study so that respondents would not infer that we were testing for the effect of a Trader Joe's affiliation on attractiveness. Furthermore, we wanted to see if smiling had an effect on attraction, and thus added smiling as a feature and potential covariate.   
 
 ### Randomization engineering
 
@@ -86,71 +86,66 @@ data[, smile_ind := ifelse(data[,smile=='smile'], 1, 0)]
 ```
 
 ## Results
-```{r histograms, message=FALSE, warning=FALSE}
+```{r logo histograms, message=FALSE, warning=FALSE}
+par(mfrow=c(3,1))
+
 hist(data[data$tjs_logo==1]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Trader Joe's Photos")
-```
 
-Figure 7 shows a distribution of the total counts of photos with a Trader Joe's logo chosen as the more attractive between two options. There appears to be a relatively normal distribution that is slightly skewed right. 
-
-```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$treat_ind==0]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Blank Photos")
-```
 
-Figure 8 depicts a distribution of the total counts of photos with no logo chosen as the more attractive between two options. There is a bimodal distribution of the data, with values condensed at both the lower and upper ends of the x axis. 
-
-```{r histograms, message=FALSE, warning=FALSE}
 hist(data[data$nike_logo==1]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Nike Photos")
-``` 
 
-Figure 9 shows a distribution of the total counts of photos with a Nike logo chosen as the more attractive between two options. The distribution is relatively uniform across all bins. 
-
-```{r histograms, message=FALSE, warning=FALSE}
-hist(data[data$smile_ind==1]$total_counts, xlab= "Total Times Chosen",
-     main = "Distribution of Counts for Smiling Photos")
 ```
 
-Figure 10 shows the distribution of the total counts of photos with the individual smiling chosen as the more attractive between two options.The distribution is non-symmetric. 
+Figure 7 shows a distribution of the total counts of photos with a Trader Joe's logo chosen as the more attractive between two options. There appears to be a relatively normal distribution that is slightly skewed right. Figure 8 depicts a distribution of the total counts of photos with no logo chosen as the more attractive between two options. There is a bimodal distribution of the data, with values condensed at both the lower and upper ends of the x axis. Figure 9 shows a distribution of the total counts of photos with a Nike logo chosen as the more attractive between two options. The distribution is relatively uniform across all bins. 
 
-```{r histograms, message=FALSE, warning=FALSE}
+```{r smile histograms, message=FALSE, warning=FALSE}
+par(mfrow=c(2,1))
+
+hist(data[data$smile_ind==1]$total_counts, xlab= "Total Times Chosen",
+     main = "Distribution of Counts for Smiling Photos")
+
 hist(data[data$smile_ind==0]$total_counts, xlab= "Total Times Chosen",
      main = "Distribution of Counts for Non-Smiling Photos")
 ```
 
-Figure 11 shows the distribution of the total counts of photos with the individual not smiling chosen as the more attractive between two options. The distribution is non-symmetric.
+Figure 10 shows the distribution of the total counts of photos with the individual smiling chosen as the more attractive between two options.The distribution is non-symmetric. Figure 11 shows the distribution of the total counts of photos with the individual not smiling chosen as the more attractive between two options. The distribution is non-symmetric.
 
 
-```{r initialize stargazer, include= False}
+```{r initialize stargazer, include=FALSE}
 robust_se <- function(mod, type = 'HC3') { sqrt(diag(vcovHC(mod, type)))}
 ```
 
 ```{r baseline}
 model_1 <- data[, lm(total_counts ~ tjs_logo)]
-coeftest(model_1, vcovHC(model_1))
+#coeftest(model_1, vcovHC(model_1))
 ```
 
 ```{r baseline + blocks}
 model_2 <- data[, lm(total_counts ~ tjs_logo + survey_block)]
-coeftest(model_2, vcovHC(model_2))
+#coeftest(model_2, vcovHC(model_2))
 anova(model_1, model_2, test= 'F')
 ```
-Although the F-test p-value is almost 1, looking at this second baseline model, we can see that our randomization was successful, since we did not see within-survey group effects. In other words, our treatment fulfilled the exclusion principle. (*add more here later*)
-
 
 ```{r without nike}
 model_3 <- data[nike_logo ==  0, lm(total_counts ~ tjs_logo)]
-coeftest(model_3, vcovHC(model_3))
+#coeftest(model_3, vcovHC(model_3))
 ```
 
 
 ```{r smile model}
 model_4 <- data[, lm(total_counts ~ tjs_logo + smile_ind)]
-coeftest(model_4, vcovHC(model_4))
+#coeftest(model_4, vcovHC(model_4))
 anova(model_1, model_4, test = 'F')
 ```
+In model 1 (as seen in the below table), we regressed the total number of times a photo was chosen on whether or not the photo contained a Trader Joe's Logo. We found that the estimated effect of having a Trader Joe's logo on the times a photo was chosen was negative, -1.945 (robust standard errors = 1.512), and was not statistically significant. Since the standard errors are almost the same magnitude as the estimated effect, it is also difficult to determine if there is any practical significance.  
 
+In model 2, although the F-test p-value is almost 1 (as seen in the above F-test), looking at this second baseline model, we can see that our randomization was successful, since we did not see within-survey group effects. In other words, our treatment fulfilled the randomization principle in that we were comparing apples to apples. In model 3, we chose not to include any photos that included a Nike logo to specifically compare blank photos to Trader Joe's logo photos. Here we can see that the effect is still negative, but not as pronounced. However, the standard errors were even larger, 1.648.  
+
+In model 4, we wanted to investigate our sub-question. We can see that having a smile has a slightly estimated positive effect, but the slope coefficient, 0.804, was not statistically significant with large standard errors (1.675). Of note, we did observe that some of the photos we received for the non-smile category did ambiguously look like they were smiling. Therefore, it is possible that this lack of uniformity across photos diluted the effect we observed.
 
 ```{r}
 stargazer(model_1, model_2, model_3, model_4, type = 'text', 
@@ -162,6 +157,7 @@ stargazer(model_1, model_2, model_3, model_4, type = 'text',
                               'Smile', 'Baseline'),
           title = "Table 1: Baseline Models")
 ```
+
 
 ```{r clean for tj vs control}
 # Remove nike logo photos and look for just tjs photos
@@ -192,29 +188,35 @@ tjs_vs_control <- rbind(tjs_only, none_c_matched)
 ```{r new baseline for just tjs}
 #42 blanks and 42 with tj's
 model_5 <- tjs_vs_control[, lm(total_counts ~ treat_ind)]
-coeftest(model_5, vcovHC(model_5))
+#coeftest(model_5, vcovHC(model_5))
 ```
 
 ```{r tjs only + smile model}
 model_6 <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind)]
-coeftest(model_6, vcovHC(model_6))
+#coeftest(model_6, vcovHC(model_6))
 anova(model_5, model_6, test = 'F')
 ```
 
 ```{r tjs only + gender model}
 model_7 <- tjs_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gender)]
-coeftest(model_7, vcovHC(model_7))
+#coeftest(model_7, vcovHC(model_7))
 anova(model_5, model_7, test = 'F')
 ```
-Here, we observe that the estimated effect of being shown a male subject in the photo and the interaction term between having a logo and the male gender were positive. It's likely that the respondents overall felt that certain male photo subjects were more attractive on average compared to other photo subjects within the survey sets, and that certain male photo subjects had a larger boost in their selection rates due to the Trader Joe's logo compared to the effect the logo had for females.
-
 
 ```{r tjs saturated model}
 model_gen_smile <- tjs_vs_control[, lm(total_counts ~ treat_ind + smile_ind + treat_ind*smile_ind
                                        + gender + treat_ind*gender + smile_ind*gender)]
-coeftest(model_gen_smile, vcovHC(model_gen_smile))
+#coeftest(model_gen_smile, vcovHC(model_gen_smile))
 anova(model_5, model_gen_smile, test = 'F')
 ```
+
+In the next set of models, we only focus on photos that were blank in control and contained the Trader Joe's logo in the treatment survey. As discussed in the Modeling Choices section, we did so to see how our outcome variable changed for the selected photos before and after receiving a Trader Joe's logo. In  model 5 (as seen in the below table), similar to before, we regressed the total number of times a photo was chosen on whether or not the photo contained a Trader Joe's Logo. We found that the estimated effect of having a Trader Joe's logo on the times a photo was chosen was negative, -3.857 (robust standard errors = 2.683), and was not statistically significant. It is likely that the estimated effect and standard errors are even larger because of our smaller sample size for this model (n=84).
+
+In model 6, we were interested in looking at the effect of having a smile in the photo once again and the interaction with our primary indicator variable. Here we see having a smile has a larger positive effect than before, but the standard errors are even larger. Interestingly, having a smile and a Trader Joe's logo makes the effect less negative than simply having a logo.
+
+In model 7, we observe that the estimated effect of being shown a male subject in the photo and the interaction term between having a logo and the male gender were positive. It's likely that the respondents overall felt that certain male photo subjects were more attractive on average compared to other photo subjects within the survey sets, and that certain male photo subjects had a larger boost in their selection rates due to the Trader Joe's logo compared to the effect the logo had for females.  
+
+In our saturated model, we see that having a Trader Joe's logo still reains negative, but the standard errors are even larger. We do note, though, that in the above F-test, we see that this model has a large p-value for the F-test, meaning that this model does not add any new statistical information to Model 5. It is interesting still that the interaction term between males and smiling is largely positive.
 
 ```{r tjs stargazer}
 stargazer(model_5, model_6, model_7, model_gen_smile, type = 'text', 
@@ -250,27 +252,28 @@ nike_vs_control <- rbind(nike_only, none_c_matched) # only has 39 blanks and 39 
 model_8 <- nike_vs_control[, lm(total_counts ~ treat_ind)]
 coeftest(model_8, vcovHC(model_8))
 ```
-To ensure that the effect we observed for our above Trader Joe's baseline model (Model 5) is not due to simply adding a logo to a photo, we included photos that had a Nike logo as a robustness check.  While the number of Nike logo pairs is smaller (n=39), the overall ratio is almost the same, and because of the similar proportion of photos pairs, we can infer that the estimated effect we saw in the Trader Joe's baseline model is unique to the Trader Joe's logo as they two slope coefficients are vastly different.
 
 ```{r nike only + smile}
 #interaction term not included because of perfect collinearity (potentially a product of randomization)
 model_9 <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind)]
-coeftest(model_9, vcovHC(model_9))
+#coeftest(model_9, vcovHC(model_9))
 anova(model_8, model_9, test = 'F')
 ```
 
 ```{r nike only + gender}
 model_10 <- nike_vs_control[, lm(total_counts ~ treat_ind + gender + treat_ind*gender)]
-coeftest(model_10, vcovHC(model_10))
+#coeftest(model_10, vcovHC(model_10))
 anova(model_8, model_10, test = 'F')
 ```
 
 ```{r nike saturated model}
 model_nike_gen_smile <- nike_vs_control[, lm(total_counts ~ treat_ind + smile_ind
                                        + gender + treat_ind*gender)]
-coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
+#coeftest(model_nike_gen_smile, vcovHC(model_nike_gen_smile))
 anova(model_8, model_nike_gen_smile, test = 'F')
 ```
+
+In this case, as stated in the Modeling Choices, we performed linear regression on the photos that were blank in control and treated with the Nike logo as a robustness check. Therefore, we do not intend to make any statements about the statistical or practical significance of the effects observed in the following models. While the number of Nike logo pairs is smaller (n=39), the overall ratio is almost the same, and because of the similar proportion of photos pairs, we can infer that the estimated effect we saw in the Trader Joe's baseline model is unique to the Trader Joe's logo as they two slope coefficients are vastly different. What we can learn then is that the effect we observed in the previous set of models for the Trader Joe's logo is not simply due to a 'logo' effect, or just adding any logo.
 
 ```{r nike stargazer}
 stargazer(model_8, model_9, model_10, model_nike_gen_smile, type = 'text', 
@@ -293,12 +296,16 @@ pwr.f2.test(u = 1, v = 82, f2 = effect_size) #u and v come from DF from summary
 ```
 To determine how much statistical power our final model (Model 5) had, based on our model parameters, we found that our model had about 30.73% statistical power. This means that our model only had 30.73% chance of reporting a true positive result. Although the reported statistical power is quite low, we feel that this level of power is understandable given our small data size and the fact we were dealing with data related to how humans think.    
 
-First, when we only focused on photos that were blank in control and contained a Trader Joe's logo in treatment, we only had 42 total unique photo subjects. Therefore, we were comparing across 42 pairs, which is a fairly small dataset. Second, when dealing with sociology- and psychology-type questions like attraction, given the limitations of our experimental design, we cannot fully capture how humans think using the variables we had operationalized. Therefore, we argue that it is reasonable that our statistical power is quite small.
+First, when we only focused on photos that were blank in control and contained a Trader Joe's logo in treatment, we only had 42 total unique photo subjects. Therefore, we were comparing across 42 pairs, which is a fairly small dataset. Second, when dealing with sociology- and psychology-type questions like attraction, given the limitations of our experimental design, we cannot fully capture how humans think using the variables we had operationalized. Therefore, we argue that it is reasonable that our statistical power is quite small.  
 
 ## Limitations and Next Steps 
 
-Moving forward with our study, we indeed realize there is much more we can do to iterate upon our experiment. If we were to rerun this experiment, we first want to increase our sample size. While we were able to work within our budget and time frame and obtain 275 responses, our sample is still not entirely representative of the entire population. Looking at the demographics, we do not have a fair number of respondents from older and younger age groups, since our responses mainly came from middle aged individuals. Aside from increasing the sample size, we would also want to further randomize the order of the photos and incorporate a mechanism for selected photos to reappear within the question bank, as having respondents select through the photos multiple times would allow us to hone in more closely at the true treatment effect. We would also include more subjects for our photos so that our photos better represent the population as well, since all our subjects came from our circle of friends and, thus, primarily came from a younger age group.
+Moving forward with our study, we indeed realize there is much more we can do to iterate upon our experiment. If we were to rerun this experiment, we first want to increase our sample size. While we were able to work within our budget and time frame and obtain 247 responses, our sample is still not entirely representative of the entire population. Looking at the demographics, we do not have a fair number of respondents from older and younger age groups, since our responses mainly came from middle aged individuals. Aside from increasing the sample size, we would also want to further randomize the order of the photos and incorporate a mechanism for selected photos to reappear within the question bank, as having respondents select through the photos multiple times would allow us to hone in more closely at the true treatment effect. We would also include more subjects for our photos so that our photos better represent the population as well, since all our subjects came from our circle of friends and, thus, primarily came from a younger age group.  
 
-Moving forward with this study, we would also like to in
+First, we believe that a larger variety of photo subjects would help to increase the statistical power. In our current models, we calculate statistical power based on the photo subjects, however for future iterations we would want to draw on the responses and questions instead of the photos. This would allow us to increase statistical power by focusing on the respondents instead of the subjects, because we have a much larger number of respondents (n=247) compared to photo subjects (n=42, for Trader Joe's).   
+
+Additionally, we would like to experiment with different research designs. For instance, sending out several 'mini' surveys in which respondents only see a single pair of photos. In this way, we can measure our outcomes at the respondent level, rather than the photo subject level. Another potential variation is showing respondents a single photo at a time and asking them to 'swipe' yes or no on the photo, more akin to modern dating apps like Tinder.  
+
 
 ## Conclusion
+All in all, we were unable to find statistically significant evidence that working at Trader Joe's affects an individual's attractiveness. However, we confirmed that our findings were not simply due to a 'logo' effect as seen in our robustness check with our Nike models. We also found mixed evidence that smiles increase the attractiveness of an individual. Despite this, we do believe there is more space for additional research in this area, as our topic study is novel in this domain and relevant in understanding the intricacies of modern day attraction. We also would like to thank our colleague Julie Lai for proposing this idea for our project.
