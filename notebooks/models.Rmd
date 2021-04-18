@@ -1,7 +1,10 @@
 ---
 title: "All About Attraction: Does Working at Trader Joe's Increase Your Attractiveness?"
 author: "Josh Archer, Hannah Choi, Josh Lin, Pauline Yue"
-output: github_document
+output: pdf_document
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
 ---
 
 ```{r, include=FALSE}
@@ -48,6 +51,8 @@ The baseline for all photos was an individual wearing a monochrome shirt visible
 ### Randomization engineering
 
 We created 4 sets of control and treatment survey versions-control A, treatment A, control B, treatment B, control C, treatment C, control D, and treatment D. Within each set of treatment and control groups the same pairs and baseline photos were utilized, and only the treatment groups saw the introduction of a logo. The pairs and what type of logo (none, Trader Joe's, or Nike) an individual would have were randomly generated. We implemented the randomizer function within Qualtrics to ensure that the question blocks with photographs would randomly present evenly across the survey distribution. There were 30-32 respondents in each survey group (see consort document below). We also used tools in Qualtrics to enable each of the question choices to appear in a random order, to minimize the possible human error of participants simply just clicking through the survey. Randomization of the pairings was crucial to ensure that an individual with a baseline attractiveness objectively higher than others did not overshadow the effect of the logos.   
+
+![Consort Diagram](../images/consort.png){width=50%}
 
 ### Experimental materials (e.g. treatment materials)
 The subjects of our study were 19 males and 15 females who volunteered to have their photos taken to be put in our surveys. Their photos were taken from the waist up, in a plain, solid color t-shirt, with variations of smiling or not smiling. Their t-shirts were kept plain so that we could either use that photo as a control, or photoshop a Trader Joe's or Nike logo onto them as treatment. The outcome we measured was the total number of times each photo was chosen.   
